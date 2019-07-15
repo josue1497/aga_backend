@@ -108,8 +108,7 @@ class UserController extends Controller
         //
     }
 
-    public function singin(Request $request)
-    {
+    public function singin(Request $request){
         $mail=$request->email;
         $pass=$request->password;
         $consultant = (new User())->where('email', '=', $request->email)
@@ -117,6 +116,24 @@ class UserController extends Controller
 
         if ($consultant) {
             return json_encode($consultant);
+        } else {
+            return '0';
+        }
+    }
+
+    public function admin_singin(Request $request){
+        $mail=$request->email;
+        $pass=$request->password;
+        $role=$request->role;
+
+            $user = User::join('user_role', 'users.id',   '=', 'user_role.user_id')
+                            ->join('roles', 'roles.id','=','user_role.role_id')
+                            ->select('users.*')->where('email', '=', $mail)
+                            ->where('password', '=', $pass)
+                            ->where('roles.value', '=', $role)
+                            ->get();
+        if ($user) {
+            return json_encode($user);
         } else {
             return '0';
         }

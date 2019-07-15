@@ -39,12 +39,15 @@ class ConsultantController extends Controller
 
         $career = new Consultant();
 
-        if(Consultant::where('email', $request->email)->get()){
-            return json_encode('Esta direccion de correo electrónico ya esta en Uso.');
+        $exist2=(new Consultant())->where('email', '=', $request->email)->first();
+        $exist1 = (new Consultant())->where('identification_document', '=', $request->identification_document)->first();
+
+        if($exist1){
+            return json_encode('Ya existe Identificación esta registrada.');
         }
 
-        if(Consultant::where('identification_document', $request->identification_document)->get()){
-            return json_encode('Ya existe Identificación esta registrada.');
+        if($exist2){
+            return json_encode('Esta direccion de correo electrónico ya esta en Uso.');
         }
 
         $data = $request->only($career->getFillable());

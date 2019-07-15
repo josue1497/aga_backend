@@ -25,5 +25,6 @@ Route::resource('user', 'UserController');
 
 Route::post('consultant/singin/', 'ConsultantController@singin');
 Route::post('user/singin/', 'UserController@singin');
+Route::post('user/admin_singin/', 'UserController@admin_singin');
 
 
