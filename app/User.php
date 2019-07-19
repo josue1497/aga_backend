@@ -44,4 +44,21 @@ class User extends Model
     public function Roles(){
         return $this->belongsToMany('App\Role','user_role')->withTimestamps();
     }
+
+    public function BalanceUser(){
+        return $this->hasOne('App\BalanceUser');
+    }
+
+    public function deposits(){
+        $this->hasMany('App\Deposit');
+    }
+
+    public function histories(){
+        return $this->hasMany('App\HistoryUser');
+    }
+
+    public function datings(){
+        return $this->hasMany('App\Dating');
+    }
+
 }

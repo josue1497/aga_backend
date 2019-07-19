@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\HistoryUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class HistoryUserController extends Controller
@@ -81,5 +82,14 @@ class HistoryUserController extends Controller
     public function destroy($historyUser)
     {
         //
+    }
+
+    public function all_histories(Request $request){
+        $user = User::where('id',$request->user_id)->first();
+
+        $histories=$user->histories;
+
+        return json_encode($histories);
+
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\BalanceUser;
+use App\HistoryUser;
+
 
 class UserController extends Controller
 {
@@ -56,6 +59,18 @@ class UserController extends Controller
 
         if ($user->fill($data)->save()) {
             $user->Roles()->attach($to_career);
+
+            $balance=new BalanceUser();
+            $balance->amount=0;
+            $balance->user_id=$user->id;
+            $balance->save();
+
+            $history=new HistoryUser();
+            $history->user_id=$user->id;
+            $history->movement_type='Registro';
+            $history->description="Registro de usuario";
+            $history->save();
+
             return json_encode('success');
         } else {
             return json_encode('fail');
@@ -137,5 +152,12 @@ class UserController extends Controller
         } else {
             return '0';
         }
+    }
+
+    public function user_balance(Request $request){
+        $user = User::where('id',$request->user_id)->first();
+        $balance=$user->BalanceUser;
+
+        return json_encode($balance);
     }
 }

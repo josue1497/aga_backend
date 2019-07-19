@@ -86,4 +86,15 @@ class CareerController extends Controller
     {
         //
     }
+
+    /**
+     * Obtiene los asesores dependiendo del valor que se envie por el POST
+     */
+    public function consultants(Request $request){
+        $career = Career::where('value',$request->career_value)->first();
+
+        $consultants=$career->Consultants;
+
+        return json_encode($consultants);
+    }
 }

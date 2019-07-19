@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Consultant;
 use App\Career;
+use App\BalanceConsultant;
+use App\ConsultantHistory;
 
 class ConsultantController extends Controller
 {
@@ -59,6 +61,18 @@ class ConsultantController extends Controller
 
         if ($career->fill($data)->save()) {
             $career->Careers()->attach($to_career);
+
+            $balance=new BalanceConsultant();
+            $balance->amount=0;
+            $balance->consultant_id=$career->id;
+            $balance->save();
+
+            $history=new ConsultantHistory();
+            $history->consultant_id=$career->id;
+            $history->movement_type='Registro';
+            $history->description="Registro de Asesor";
+            $history->save();
+
             return json_encode('success');
         } else {
             return json_encode('fail');;
@@ -123,5 +137,12 @@ class ConsultantController extends Controller
         } else {
             return '0';
         }
+    }
+
+    public function consultant_balance(Request $request){
+        $user = Consultant::where('id',$request->consultant_id)->first();
+        $balance=$user->BalanceConsultant;
+
+        return json_encode($balance);
     }
 }
