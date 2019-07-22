@@ -13,4 +13,12 @@ class HistoryUser extends Model
         return $this->belongsTo('App\User');
     }
 
+    public static function add_to_history($title,$summary, $user_id){
+        $history=new HistoryUser();
+        $history->user_id=$user_id;
+        $history->movement_type=$title;
+        $history->description=$summary;
+        $history->save();
+    }
+
 }

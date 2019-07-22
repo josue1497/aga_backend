@@ -54,7 +54,7 @@ class User extends Model
     }
 
     public function histories(){
-        return $this->hasMany('App\HistoryUser');
+        return $this->hasMany('App\HistoryUser')->orderBy('created_at', 'DESC');
     }
 
     public function datings(){

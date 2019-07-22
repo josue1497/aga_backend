@@ -67,11 +67,8 @@ class ConsultantController extends Controller
             $balance->consultant_id=$career->id;
             $balance->save();
 
-            $history=new ConsultantHistory();
-            $history->consultant_id=$career->id;
-            $history->movement_type='Registro';
-            $history->description="Registro de Asesor";
-            $history->save();
+            ConsultantHistory::add_to_history('Registro',"Registro de Asesor",$career->id);
+
 
             return json_encode('success');
         } else {
@@ -133,6 +130,14 @@ class ConsultantController extends Controller
             ->where('password', '=', $pass)->first();
 
         if ($consultant) {
+
+            ConsultantHistory::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$consultant->id);
+            // $history=new ConsultantHistory();
+            // $history->user_id=;
+            // $history->movement_type=;
+            // $history->description=;
+            // $history->save();
+
             return json_encode($consultant);
         } else {
             return '0';

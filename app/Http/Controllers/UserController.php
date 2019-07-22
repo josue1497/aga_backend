@@ -124,17 +124,27 @@ class UserController extends Controller
     }
 
     public function singin(Request $request){
-        $mail=$request->email;
         $pass=$request->password;
-        $consultant = (new User())->where('email', '=', $request->email)
+        $user = (new User())->where('email', '=', $request->email)
             ->where('password', '=', $pass)->first();
 
-        if ($consultant) {
-            return json_encode($consultant);
+        if ($user) {
+
+            // $history=new HistoryUser();
+            // $history->user_id=$user->id;
+            // $history->movement_type='Inicio de sesión';
+            // $history->description="Inicio de Sesion el ".@date("d/m/y");
+            // $history->save();
+
+            HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
+
+            return json_encode($user);
         } else {
             return '0';
         }
     }
+
+
 
     public function admin_singin(Request $request){
         $mail=$request->email;
@@ -148,6 +158,15 @@ class UserController extends Controller
                             ->where('roles.value', '=', $role)
                             ->get();
         if ($user) {
+
+            HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
+
+            // $history=new HistoryUser();
+            // $history->user_id=;
+            // $history->movement_type=;
+            // $history->description=
+            // $history->save();
+
             return json_encode($user);
         } else {
             return '0';

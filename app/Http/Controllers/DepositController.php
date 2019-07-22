@@ -82,4 +82,8 @@ class DepositController extends Controller
     {
         //
     }
+
+    public function upload(Request $request){
+        return json_encode($request);
+    }
 }

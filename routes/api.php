@@ -42,6 +42,15 @@ Route::post('historyuser/all_histories', 'HistoryUserController@all_histories');
 Route::resource('consultanthistory', 'ConsultantHistoryController');
 Route::post('consultanthistory/all_histories', 'ConsultantHistoryController@all_histories');
 
+Route::resource('deposit', 'DepositController');
+Route::post('deposit/upload', 'DepositController@upload');
+
+
+Route::resource('balance_user', 'BalanceUserController');
+Route::post('balance_user/get_balance', 'BalanceUserController@get_balance');
+
+
+
 
 
 

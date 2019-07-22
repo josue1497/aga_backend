@@ -82,4 +82,14 @@ class BalanceUserController extends Controller
     {
         //
     }
+
+    public function get_balance(Request $request){
+        $balance = BalanceUser::where('user_id',$request->user_id)->first();
+
+        if($balance){
+            return json_encode($balance->amount);
+        }else{
+            return json_encode('Saldo no Disponible para este usuario');
+        }
+    }
 }
