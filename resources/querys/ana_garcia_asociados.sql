@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2019 a las 08:04:47
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.0
+-- Servidor: localhost
+-- Tiempo de generación: 23-07-2019 a las 21:18:43
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -209,6 +209,13 @@ CREATE TABLE `deposits` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `deposits`
+--
+
+INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `deposit_status`, `created_at`, `updated_at`) VALUES
+(1, 9, '100', 'nexus2cee_unnamed-11523072320191900.png', 'P', '2019-07-23 23:00:42', '2019-07-23 23:00:42');
+
 -- --------------------------------------------------------
 
 --
@@ -229,7 +236,9 @@ CREATE TABLE `history_user` (
 --
 
 INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `created_at`, `updated_at`) VALUES
-(1, 9, 'Registro', 'Registro de usuario', '2019-07-19 08:10:21', '2019-07-19 08:10:21');
+(1, 9, 'Registro', 'Registro de usuario', '2019-07-19 08:10:21', '2019-07-19 08:10:21'),
+(2, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-23 16:56:37', '2019-07-23 16:56:37'),
+(3, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-23 17:29:21', '2019-07-23 17:29:21');
 
 -- --------------------------------------------------------
 
@@ -320,6 +329,19 @@ CREATE TABLE `tests` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transactions_user`
+--
+
+CREATE TABLE `transactions_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `transaction_type` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `movement_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -474,6 +496,12 @@ ALTER TABLE `tests`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `transactions_user`
+--
+ALTER TABLE `transactions_user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -537,13 +565,13 @@ ALTER TABLE `datings`
 -- AUTO_INCREMENT de la tabla `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -568,6 +596,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `tests`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `transactions_user`
+--
+ALTER TABLE `transactions_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

@@ -84,6 +84,35 @@ class DepositController extends Controller
     }
 
     public function upload(Request $request){
-        return json_encode($request);
+       
+    if(!$request->hasFile('deposit')) {
+        return response()->json(['upload_file_not_found'], 400);
+    }
+
+    $file = $request->file('deposit');
+    if(!$file->isValid()) {
+        return response()->json(['invalid_file_upload'], 400);
+    }
+    $path = public_path() . '/uploads/';
+
+    // $file = $file->storeAs($path,  $file->getClientOriginalName()  ,'your_disk');
+    $date = date("dmdYGi", time());
+
+    $new_name=basename($file->getClientOriginalName(), '.'.$file->getClientOriginalExtension()).$date.'.'.$file->getClientOriginalExtension();
+   
+   
+    $file->move($path, $new_name);
+
+    $deposit=new Deposit();
+    $deposit->amount=$_POST['amount'];
+    $deposit->user_id=$_POST['user_id'];
+    $deposit->deposit_status='P';
+    $deposit->document=$new_name;
+
+    $deposit->save();
+
+    return response()->json($deposit);
+
+    return json_encode($file);
     }
 }
