@@ -16,7 +16,7 @@ class ConsultantHistory extends Model
     public static function add_to_history($title, $summary, $consultant_id)
     {
         $history = new ConsultantHistory();
-        $history->user_id = $consultant_id;
+        $history->consultant_id = $consultant_id;
         $history->movement_type = $title;
         $history->description = $summary;
         $history->save();

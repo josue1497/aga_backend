@@ -27,6 +27,7 @@ Route::post('career/consultants', 'CareerController@consultants');
 Route::resource('consultant', 'ConsultantController');
 Route::post('consultant/singin/', 'ConsultantController@singin');
 Route::post('consultant/consultant_balance/', 'ConsultantController@consultant_balance');
+Route::post('consultant/all_consultants/', 'ConsultantController@all_consultants');
 
 
 Route::resource('user', 'UserController');
@@ -48,6 +49,13 @@ Route::post('deposit/upload', 'DepositController@upload');
 
 Route::resource('balance_user', 'BalanceUserController');
 Route::post('balance_user/get_balance', 'BalanceUserController@get_balance');
+
+Route::resource('transaction_user', 'TransactionUserController');
+Route::post('transaction_user/all_transactions', 'TransactionUserController@all_transactions');
+
+
+Route::resource('dating', 'DatingController');
+
 
 
 

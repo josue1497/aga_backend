@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TransactionUser;
 
-class TransactionController extends Controller
+class TransactionUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,5 +81,13 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function all_transactions(Request $request){
+
+        $transactions = TransactionUser::join('users','users.id','=','transactions_user.user_id')
+        ->join('deposits', 'deposits.id','=','');
+
+        return response()->json(['Exito'], 500);
     }
 }

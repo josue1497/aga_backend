@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dating;
 use Illuminate\Http\Request;
+use App\HistoryUser;
 
 class DatingController extends Controller
 {
@@ -35,16 +36,31 @@ class DatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dating = new Dating();
+
+        $data = $request->only($dating->getFillable());
+        $fecha = $request->for_date.' '.$request->for_time;
+
+        $dating->fill($data);
+        $dating->for_date=$fecha;
+
+        if($dating->save()){
+            HistoryUser::add_to_history('Solicitud de Asesoria',$dating->summary,$dating->user_id);
+            return response()->json('ok');
+        }
+
+        return json_encode($dating);
+
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dating  $dating
+     * @param  \App\Dating  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($dating)
+    public function show($id)
     {
         //
     }
@@ -55,7 +71,7 @@ class DatingController extends Controller
      * @param  \App\Dating  $dating
      * @return \Illuminate\Http\Response
      */
-    public function edit($dating)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +80,10 @@ class DatingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dating  $dating
+     * @param  \App\Dating  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $dating)
+    public function update(Request $request, $id)
     {
         //
     }

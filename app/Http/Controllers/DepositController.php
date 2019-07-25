@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deposit;
 use Illuminate\Http\Request;
+use App\TransactionUser;
 
 class DepositController extends Controller
 {
@@ -84,7 +85,7 @@ class DepositController extends Controller
     }
 
     public function upload(Request $request){
-       
+
     if(!$request->hasFile('deposit')) {
         return response()->json(['upload_file_not_found'], 400);
     }
@@ -93,14 +94,10 @@ class DepositController extends Controller
     if(!$file->isValid()) {
         return response()->json(['invalid_file_upload'], 400);
     }
+
     $path = public_path() . '/uploads/';
-
-    // $file = $file->storeAs($path,  $file->getClientOriginalName()  ,'your_disk');
     $date = date("dmdYGi", time());
-
     $new_name=basename($file->getClientOriginalName(), '.'.$file->getClientOriginalExtension()).$date.'.'.$file->getClientOriginalExtension();
-   
-   
     $file->move($path, $new_name);
 
     $deposit=new Deposit();
@@ -109,7 +106,14 @@ class DepositController extends Controller
     $deposit->deposit_status='P';
     $deposit->document=$new_name;
 
-    $deposit->save();
+    if($deposit->save()){
+        $transaction = new TransactionUser();
+        $transaction->user_id=$deposit->user_id;
+        $transaction->movement_id=$deposit->id;
+        $transaction->transaction_type='Deposito';
+
+        $transaction->save();
+    }
 
     return response()->json($deposit);
 

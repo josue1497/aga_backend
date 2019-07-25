@@ -109,7 +109,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::where('id',$id);
+        $data = $request->all();
+
+        if ($user->update($data)) {
+            return response()->json(['Actualizacion Exitosa'],200);
+        }
+
+        return response()->json(['Error al actualizar usuario'],400);
     }
 
     /**
@@ -129,12 +136,6 @@ class UserController extends Controller
             ->where('password', '=', $pass)->first();
 
         if ($user) {
-
-            // $history=new HistoryUser();
-            // $history->user_id=$user->id;
-            // $history->movement_type='Inicio de sesión';
-            // $history->description="Inicio de Sesion el ".@date("d/m/y");
-            // $history->save();
 
             HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
 

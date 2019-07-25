@@ -126,17 +126,12 @@ class ConsultantController extends Controller
     {
         $mail = $request->email;
         $pass = $request->password;
-        $consultant = (new Consultant())->find(1)->where('email', '=', $mail)
+        $consultant = Consultant::where('email', '=', $mail)
             ->where('password', '=', $pass)->first();
 
         if ($consultant) {
 
             ConsultantHistory::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$consultant->id);
-            // $history=new ConsultantHistory();
-            // $history->user_id=;
-            // $history->movement_type=;
-            // $history->description=;
-            // $history->save();
 
             return json_encode($consultant);
         } else {
@@ -149,5 +144,18 @@ class ConsultantController extends Controller
         $balance=$user->BalanceConsultant;
 
         return json_encode($balance);
+    }
+
+    public function all_consultants(Request $request){
+        if('ALL'===$request->type){
+            $consultants=Consultant::all();
+        }else{
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->select('consultants.*','careers.name as career_name')->where('careers.value','=',$request->type)
+            ->get();
+        }
+
+        return json_encode($consultants);
     }
 }
