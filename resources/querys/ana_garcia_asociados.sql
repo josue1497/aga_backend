@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 23-07-2019 a las 21:18:43
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.1.26
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-07-2019 a las 05:20:02
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -174,7 +174,8 @@ CREATE TABLE `consultant_history` (
 --
 
 INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `description`, `created_at`, `updated_at`) VALUES
-(1, 18, 'Registro', 'Registro de Asesor', '2019-07-19 09:29:49', '2019-07-19 09:29:49');
+(1, 18, 'Registro', 'Registro de Asesor', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
+(2, 17, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:00:27', '2019-07-24 18:00:27');
 
 -- --------------------------------------------------------
 
@@ -192,6 +193,15 @@ CREATE TABLE `datings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `datings`
+--
+
+INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `title`, `summary`, `created_at`, `updated_at`) VALUES
+(1, 9, 15, '2019-10-11 02:00:00', 'Prueba 1', 'Pruebsa 1', '2019-07-25 02:03:27', '2019-07-25 02:03:27'),
+(2, 9, 17, '2019-10-11 02:10:00', 'Prueba 2', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
+(3, 9, 17, '2019-08-24 15:00:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38');
 
 -- --------------------------------------------------------
 
@@ -214,7 +224,11 @@ CREATE TABLE `deposits` (
 --
 
 INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `deposit_status`, `created_at`, `updated_at`) VALUES
-(1, 9, '100', 'nexus2cee_unnamed-11523072320191900.png', 'P', '2019-07-23 23:00:42', '2019-07-23 23:00:42');
+(1, 9, '100', 'nexus2cee_unnamed-11523072320191900.png', 'P', '2019-07-23 23:00:42', '2019-07-23 23:00:42'),
+(2, 9, '100', '1 cuenta josue24072420191422.PNG', 'P', '2019-07-24 18:22:38', '2019-07-24 18:22:38'),
+(3, 9, '100', '1 pago trasnferencia24072420191423.PNG', 'P', '2019-07-24 18:23:21', '2019-07-24 18:23:21'),
+(4, 9, '100', '1 cuenta josue24072420191423.PNG', 'P', '2019-07-24 18:23:52', '2019-07-24 18:23:52'),
+(5, 9, '100', '1 cuenta josue24072420191427.PNG', 'P', '2019-07-24 18:27:13', '2019-07-24 18:27:13');
 
 -- --------------------------------------------------------
 
@@ -238,7 +252,12 @@ CREATE TABLE `history_user` (
 INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `created_at`, `updated_at`) VALUES
 (1, 9, 'Registro', 'Registro de usuario', '2019-07-19 08:10:21', '2019-07-19 08:10:21'),
 (2, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-23 16:56:37', '2019-07-23 16:56:37'),
-(3, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-23 17:29:21', '2019-07-23 17:29:21');
+(3, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-23 17:29:21', '2019-07-23 17:29:21'),
+(4, 9, 'Inicio de sesión', 'Inicio de Sesión el 23/07/19', '2019-07-24 02:41:58', '2019-07-24 02:41:58'),
+(5, 9, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:06:37', '2019-07-24 18:06:37'),
+(6, 9, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-25 00:54:47', '2019-07-25 00:54:47'),
+(7, 9, 'Solicitud de Asesoria', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
+(8, 9, 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38');
 
 -- --------------------------------------------------------
 
@@ -340,8 +359,17 @@ CREATE TABLE `transactions_user` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `transaction_type` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `movement_id` int(10) UNSIGNED DEFAULT NULL
+  `movement_id` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `transactions_user`
+--
+
+INSERT INTO `transactions_user` (`id`, `user_id`, `transaction_type`, `movement_id`, `created_at`, `updated_at`) VALUES
+(1, 9, 'Pago', 5, '2019-07-24 18:27:16', '2019-07-24 18:27:16');
 
 -- --------------------------------------------------------
 
@@ -372,7 +400,7 @@ INSERT INTO `users` (`id`, `identification_document`, `name`, `lastname`, `birth
 (1, '123456', 'Josue', 'Martinez', '1010-10-10', '299930', NULL, 'jmartinezm@intelix.biz', '1234', NULL, '2019-07-15 01:32:35', '2019-07-15 01:32:35'),
 (2, '1000000', 'Administrador', 'Administrador', '2019-07-14', NULL, NULL, 'admin', 'admin', NULL, NULL, NULL),
 (6, '1234555', 'Nuevo', 'Usuario', '1000-10-10', '10290192', NULL, 'nuevo@mail.com', '1234', NULL, '2019-07-19 07:50:46', '2019-07-19 07:50:46'),
-(9, '39393993', 'pruesb', 'Usuario', '1010-10-10', '0292019', NULL, 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14');
+(9, '39393993', 'Josue', 'Martinez', '1010-10-10', '0292019', NULL, 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14');
 
 -- --------------------------------------------------------
 
@@ -553,25 +581,25 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -601,7 +629,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT de la tabla `transactions_user`
 --
 ALTER TABLE `transactions_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
