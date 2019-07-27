@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2019 a las 05:20:02
+-- Tiempo de generación: 27-07-2019 a las 16:21:33
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -54,7 +54,8 @@ CREATE TABLE `balance_consultants` (
 
 INSERT INTO `balance_consultants` (`id`, `consultant_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 17, '0', '2019-07-19 07:53:58', '2019-07-19 07:53:58'),
-(2, 18, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49');
+(2, 18, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
+(3, 15, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49');
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,8 @@ CREATE TABLE `consultant_history` (
 
 INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `description`, `created_at`, `updated_at`) VALUES
 (1, 18, 'Registro', 'Registro de Asesor', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
-(2, 17, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:00:27', '2019-07-24 18:00:27');
+(2, 17, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:00:27', '2019-07-24 18:00:27'),
+(3, 17, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 16:05:19', '2019-07-27 16:05:19');
 
 -- --------------------------------------------------------
 
@@ -201,7 +203,8 @@ CREATE TABLE `datings` (
 INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `title`, `summary`, `created_at`, `updated_at`) VALUES
 (1, 9, 15, '2019-10-11 02:00:00', 'Prueba 1', 'Pruebsa 1', '2019-07-25 02:03:27', '2019-07-25 02:03:27'),
 (2, 9, 17, '2019-10-11 02:10:00', 'Prueba 2', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
-(3, 9, 17, '2019-08-24 15:00:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38');
+(3, 9, 17, '2019-08-24 15:00:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
+(4, NULL, 15, '1970-01-01 16:00:00', 'Hola', 'Que', '2019-07-27 15:56:58', '2019-07-27 15:56:58');
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,9 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (5, 9, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:06:37', '2019-07-24 18:06:37'),
 (6, 9, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-25 00:54:47', '2019-07-25 00:54:47'),
 (7, 9, 'Solicitud de Asesoria', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
-(8, 9, 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38');
+(8, 9, 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
+(9, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 15:20:21', '2019-07-27 15:20:21'),
+(10, NULL, 'Solicitud de Asesoria', 'Que', '2019-07-27 15:57:00', '2019-07-27 15:57:00');
 
 -- --------------------------------------------------------
 
@@ -557,7 +562,7 @@ ALTER TABLE `activity_logs`
 -- AUTO_INCREMENT de la tabla `balance_consultants`
 --
 ALTER TABLE `balance_consultants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `balance_users`
@@ -581,13 +586,13 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
@@ -599,7 +604,7 @@ ALTER TABLE `deposits`
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`

@@ -42,7 +42,9 @@ class DatingController extends Controller
         $fecha = $request->for_date.' '.$request->for_time;
 
         $dating->fill($data);
-        $dating->for_date=$fecha;
+        $date= strtotime($fecha);
+        $to_date=date('Y-m-d h:i:s', $date);
+        $dating->for_date=$to_date;
 
         if($dating->save()){
             HistoryUser::add_to_history('Solicitud de Asesoria',$dating->summary,$dating->user_id);
