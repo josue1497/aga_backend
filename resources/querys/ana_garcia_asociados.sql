@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-07-2019 a las 16:21:33
+-- Tiempo de generación: 30-07-2019 a las 05:48:01
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -152,7 +152,7 @@ CREATE TABLE `consultants` (
 
 INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `email`, `password`, `attach_document`, `attach_certification`, `validate`, `created_at`, `updated_at`) VALUES
 (15, '111', 'Lunesas', 'MaS', '2019-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', '2019-06-30 07:40:33', '2019-06-30 07:40:33'),
-(17, '210211', 'new', 'Coonsul', '9299-02-19', '22393020', 'consulnew@mail.com', '1234', NULL, NULL, 'N', '2019-07-19 07:53:53', '2019-07-19 07:53:53'),
+(17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'N', '2019-07-19 07:53:53', '2019-07-19 07:53:53'),
 (18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'N', '2019-07-19 09:29:49', '2019-07-19 09:29:49');
 
 -- --------------------------------------------------------
@@ -177,7 +177,13 @@ CREATE TABLE `consultant_history` (
 INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `description`, `created_at`, `updated_at`) VALUES
 (1, 18, 'Registro', 'Registro de Asesor', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
 (2, 17, 'Inicio de sesión', 'Inicio de Sesión el 24/07/19', '2019-07-24 18:00:27', '2019-07-24 18:00:27'),
-(3, 17, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 16:05:19', '2019-07-27 16:05:19');
+(3, 17, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 16:05:19', '2019-07-27 16:05:19'),
+(4, 17, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:30:46', '2019-07-27 18:30:46'),
+(5, 17, 'Inicio de sesión', 'Inicio de Sesión el 28/07/19', '2019-07-29 02:59:57', '2019-07-29 02:59:57'),
+(6, 17, 'Inicio de sesión', 'Inicio de Sesión el 28/07/19', '2019-07-29 03:24:25', '2019-07-29 03:24:25'),
+(7, 17, 'Inicio de sesión', 'Inicio de Sesión el 28/07/19', '2019-07-29 03:26:10', '2019-07-29 03:26:10'),
+(8, 17, 'Actualización de Perfil', 'Modificacion de la informacion de perfil del Asesor el 28/07/19', '2019-07-29 03:39:24', '2019-07-29 03:39:24'),
+(9, 17, 'Inicio de sesión', 'Inicio de Sesión el 30/07/19', '2019-07-30 04:06:15', '2019-07-30 04:06:15');
 
 -- --------------------------------------------------------
 
@@ -190,8 +196,11 @@ CREATE TABLE `datings` (
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `consultant_id` int(10) UNSIGNED DEFAULT NULL,
   `for_date` timestamp NULL DEFAULT NULL,
+  `time_from` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_up` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `summary` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` decimal(10,0) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -200,11 +209,12 @@ CREATE TABLE `datings` (
 -- Volcado de datos para la tabla `datings`
 --
 
-INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `title`, `summary`, `created_at`, `updated_at`) VALUES
-(1, 9, 15, '2019-10-11 02:00:00', 'Prueba 1', 'Pruebsa 1', '2019-07-25 02:03:27', '2019-07-25 02:03:27'),
-(2, 9, 17, '2019-10-11 02:10:00', 'Prueba 2', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
-(3, 9, 17, '2019-08-24 15:00:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
-(4, NULL, 15, '1970-01-01 16:00:00', 'Hola', 'Que', '2019-07-27 15:56:58', '2019-07-27 15:56:58');
+INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `created_at`, `updated_at`) VALUES
+(1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', '2019-07-25 02:03:27', '2019-07-25 02:03:27'),
+(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
+(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
+(4, NULL, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '0', '2019-07-27 15:56:58', '2019-07-27 15:56:58'),
+(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', '2019-07-27 18:30:05', '2019-07-27 18:30:05');
 
 -- --------------------------------------------------------
 
@@ -231,7 +241,8 @@ INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `deposit_status`,
 (2, 9, '100', '1 cuenta josue24072420191422.PNG', 'P', '2019-07-24 18:22:38', '2019-07-24 18:22:38'),
 (3, 9, '100', '1 pago trasnferencia24072420191423.PNG', 'P', '2019-07-24 18:23:21', '2019-07-24 18:23:21'),
 (4, 9, '100', '1 cuenta josue24072420191423.PNG', 'P', '2019-07-24 18:23:52', '2019-07-24 18:23:52'),
-(5, 9, '100', '1 cuenta josue24072420191427.PNG', 'P', '2019-07-24 18:27:13', '2019-07-24 18:27:13');
+(5, 9, '100', '1 cuenta josue24072420191427.PNG', 'P', '2019-07-24 18:27:13', '2019-07-24 18:27:13'),
+(6, 9, '100', '1 cuenta josue27072720191432.PNG', 'P', '2019-07-27 18:32:31', '2019-07-27 18:32:31');
 
 -- --------------------------------------------------------
 
@@ -262,7 +273,10 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (7, 9, 'Solicitud de Asesoria', 'Prueba 2', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
 (8, 9, 'Solicitud de Asesoria', 'Necesito una asesoria.', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
 (9, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 15:20:21', '2019-07-27 15:20:21'),
-(10, NULL, 'Solicitud de Asesoria', 'Que', '2019-07-27 15:57:00', '2019-07-27 15:57:00');
+(10, NULL, 'Solicitud de Asesoria', 'Que', '2019-07-27 15:57:00', '2019-07-27 15:57:00'),
+(11, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:28:47', '2019-07-27 18:28:47'),
+(12, 9, 'Solicitud de Asesoria', 'Cita de Prueba', '2019-07-27 18:30:05', '2019-07-27 18:30:05'),
+(13, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:32:04', '2019-07-27 18:32:04');
 
 -- --------------------------------------------------------
 
@@ -374,7 +388,8 @@ CREATE TABLE `transactions_user` (
 --
 
 INSERT INTO `transactions_user` (`id`, `user_id`, `transaction_type`, `movement_id`, `created_at`, `updated_at`) VALUES
-(1, 9, 'Pago', 5, '2019-07-24 18:27:16', '2019-07-24 18:27:16');
+(1, 9, 'Pago', 5, '2019-07-24 18:27:16', '2019-07-24 18:27:16'),
+(2, 9, 'Deposito', 6, '2019-07-27 18:32:32', '2019-07-27 18:32:32');
 
 -- --------------------------------------------------------
 
@@ -586,25 +601,25 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -634,7 +649,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT de la tabla `transactions_user`
 --
 ALTER TABLE `transactions_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

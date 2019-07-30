@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dating extends Model
 {
-    protected $fillable = ['user_id','consultant_id','title','summary'];
+    protected $fillable = ['user_id','consultant_id','title','summary','time_from', 'time_up'];
 
     public function user(){
         return $this->belongsTo('App\User');
