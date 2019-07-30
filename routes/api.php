@@ -55,6 +55,8 @@ Route::post('transaction_user/all_transactions', 'TransactionUserController@all_
 
 
 Route::resource('dating', 'DatingController');
+Route::post('dating/datings_by_consultant', 'DatingController@datings_by_consultant');
+
 
 Route::resource('balance_consultant', 'BalanceConsultantController');
 Route::post('balance_consultant/get_balance', 'BalanceConsultantController@get_balance');

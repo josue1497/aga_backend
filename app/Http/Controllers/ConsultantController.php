@@ -108,7 +108,15 @@ class ConsultantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Consultant::where('id',$id);
+        $data = $request->all();
+
+        if ($user->update($data)) {
+            ConsultantHistory::add_to_history('Actualización de Perfil',"Modificacion de la informacion de perfil del Asesor el ".@date("d/m/y"),$id);
+            return response()->json(['Actualizacion Exitosa'],200);
+        }
+
+        return response()->json(['Error al actualizar usuario'],400);
     }
 
     /**

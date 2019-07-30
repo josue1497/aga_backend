@@ -23,11 +23,11 @@ class Consultant extends Model
     }
 
     public function histories(){
-       return $this->hasMany('App\ConsultantHistory');
+       return $this->hasMany('App\ConsultantHistory')->orderBy('created_at', 'DESC');
     }
 
     public function datings(){
-        return $this->hasMany('App\Dating');
+        return $this->hasMany('App\Dating')->orderBy('created_at', 'ASC');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Deposit;
 use Illuminate\Http\Request;
 use App\TransactionUser;
+use App\HistoryUser;
 
 class DepositController extends Controller
 {
@@ -111,6 +112,8 @@ class DepositController extends Controller
         $transaction->user_id=$deposit->user_id;
         $transaction->movement_id=$deposit->id;
         $transaction->transaction_type='Deposito';
+
+        HistoryUser::add_to_history('Deposito','Ingreso de deposito por '.$deposit->amount.'$, el'.@date("d/m/y"),$deposit->user_id);
 
         $transaction->save();
     }

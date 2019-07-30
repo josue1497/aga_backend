@@ -113,6 +113,7 @@ class UserController extends Controller
         $data = $request->all();
 
         if ($user->update($data)) {
+            HistoryUser::add_to_history('Actualización de Perfil',"Modificacion de la informacion de perfil de usuario el ".@date("d/m/y"),$id);
             return response()->json(['Actualizacion Exitosa'],200);
         }
 
@@ -161,12 +162,6 @@ class UserController extends Controller
         if ($user) {
 
             HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
-
-            // $history=new HistoryUser();
-            // $history->user_id=;
-            // $history->movement_type=;
-            // $history->description=
-            // $history->save();
 
             return json_encode($user);
         } else {
