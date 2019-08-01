@@ -41,12 +41,11 @@ class DatingController extends Controller
         $dating = new Dating();
 
         $data = $request->only($dating->getFillable());
-        $fecha = $request->for_date.' '.$request->for_time;
 
         $dating->fill($data);
-        $date= strtotime($fecha);
-        $to_date=date('Y-m-d h:i:s', $date);
-        $dating->for_date=$to_date;
+        // $date= strtotime($fecha);
+        // $to_date=date('Y-m-d', $date);
+        // $dating->for_date=$to_date;
 
         if($dating->save()){
             HistoryUser::add_to_history('Solicitud de Asesoria',$dating->summary,$dating->user_id);
@@ -106,8 +105,29 @@ class DatingController extends Controller
 
     public function datings_by_consultant(Request $request){
 
-        $consultant = Consultant::where('id',$request->consultant_id)->first();
+        $result = Consultant::join('datings','datings.consultant_id','=','consultants.id')
+        ->join('users','users.id','=','datings.user_id')
+        ->select('datings.*','users.name as solname','users.lastname as solape')
+        ->where('consultants.id',$request->consultant_id)
+        ->where('datings.dating_status','Solicitado')
+        ->get();
 
-        return response()->json($consultant->datings);
+        // $result=$consultant->datings->join('users','users.id','=','datings.user_id')->get();
+
+        return response()->json($result);
+    }
+
+    public function response_request(Request $request){
+        $dating = Dating::where('id',$request->id)->first();
+
+        $data = $request->all();
+
+        if ($dating->update($data)) {
+            HistoryUser::add_to_history('Asesoria',"Asesoria ".$dating->title.": ".$dating->dating_status,$dating->user_id);
+            ConsultantHistory::add_to_history('Asesoria',"Asesoria ".$dating->title.": ".$dating->dating_status,$dating->consultant_id);
+            return json_encode('ok');
+        }
+
+        return json_encode('fail');
     }
 }

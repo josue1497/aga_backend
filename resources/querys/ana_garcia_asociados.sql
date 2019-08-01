@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2019 a las 05:48:01
+-- Tiempo de generación: 01-08-2019 a las 07:06:47
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -151,7 +151,7 @@ CREATE TABLE `consultants` (
 --
 
 INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `email`, `password`, `attach_document`, `attach_certification`, `validate`, `created_at`, `updated_at`) VALUES
-(15, '111', 'Lunesas', 'MaS', '2019-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', '2019-06-30 07:40:33', '2019-06-30 07:40:33'),
+(15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', '2019-06-30 07:40:33', '2019-06-30 07:40:33'),
 (17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'N', '2019-07-19 07:53:53', '2019-07-19 07:53:53'),
 (18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'N', '2019-07-19 09:29:49', '2019-07-19 09:29:49');
 
@@ -183,7 +183,13 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 (6, 17, 'Inicio de sesión', 'Inicio de Sesión el 28/07/19', '2019-07-29 03:24:25', '2019-07-29 03:24:25'),
 (7, 17, 'Inicio de sesión', 'Inicio de Sesión el 28/07/19', '2019-07-29 03:26:10', '2019-07-29 03:26:10'),
 (8, 17, 'Actualización de Perfil', 'Modificacion de la informacion de perfil del Asesor el 28/07/19', '2019-07-29 03:39:24', '2019-07-29 03:39:24'),
-(9, 17, 'Inicio de sesión', 'Inicio de Sesión el 30/07/19', '2019-07-30 04:06:15', '2019-07-30 04:06:15');
+(9, 17, 'Inicio de sesión', 'Inicio de Sesión el 30/07/19', '2019-07-30 04:06:15', '2019-07-30 04:06:15'),
+(10, 17, 'Inicio de sesión', 'Inicio de Sesión el 31/07/19', '2019-07-31 04:30:18', '2019-07-31 04:30:18'),
+(11, 15, 'Asesoria solicitada', 'Test test', '2019-08-01 08:01:49', '2019-08-01 08:01:49'),
+(12, 15, 'Inicio de sesión', 'Inicio de Sesión el 01/08/19', '2019-08-01 08:03:55', '2019-08-01 08:03:55'),
+(13, 15, 'Actualización de Perfil', 'Modificacion de la informacion de perfil del Asesor el 01/08/19', '2019-08-01 08:31:27', '2019-08-01 08:31:27'),
+(14, 15, 'Asesoria', 'Asesoria Hola: Aprobada', '2019-08-01 08:54:23', '2019-08-01 08:54:23'),
+(15, 15, 'Asesoria', 'Asesoria Prueba 1: Rechazada', '2019-08-01 08:59:50', '2019-08-01 08:59:50');
 
 -- --------------------------------------------------------
 
@@ -201,6 +207,7 @@ CREATE TABLE `datings` (
   `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `summary` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` decimal(10,0) NOT NULL,
+  `dating_status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -209,12 +216,13 @@ CREATE TABLE `datings` (
 -- Volcado de datos para la tabla `datings`
 --
 
-INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `created_at`, `updated_at`) VALUES
-(1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', '2019-07-25 02:03:27', '2019-07-25 02:03:27'),
-(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
-(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
-(4, NULL, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '0', '2019-07-27 15:56:58', '2019-07-27 15:56:58'),
-(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', '2019-07-27 18:30:05', '2019-07-27 18:30:05');
+INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `dating_status`, `created_at`, `updated_at`) VALUES
+(1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', 'Rechazada', '2019-07-25 02:03:27', '2019-08-01 08:59:49'),
+(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', 'Solicitado', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
+(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', 'Solicitado', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
+(4, 9, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '1000', 'Aprobada', '2019-07-27 15:56:58', '2019-08-01 08:54:23'),
+(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', 'Solicitado', '2019-07-27 18:30:05', '2019-07-27 18:30:05'),
+(6, 9, 15, '2019-08-10 04:00:00', '10:00', '11:10', 'Highcharts Demo', 'Test test', '1000', 'Solicitado', '2019-08-01 08:01:47', '2019-08-01 08:01:47');
 
 -- --------------------------------------------------------
 
@@ -276,7 +284,12 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (10, NULL, 'Solicitud de Asesoria', 'Que', '2019-07-27 15:57:00', '2019-07-27 15:57:00'),
 (11, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:28:47', '2019-07-27 18:28:47'),
 (12, 9, 'Solicitud de Asesoria', 'Cita de Prueba', '2019-07-27 18:30:05', '2019-07-27 18:30:05'),
-(13, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:32:04', '2019-07-27 18:32:04');
+(13, 9, 'Inicio de sesión', 'Inicio de Sesión el 27/07/19', '2019-07-27 18:32:04', '2019-07-27 18:32:04'),
+(14, 9, 'Inicio de sesión', 'Inicio de Sesión el 01/08/19', '2019-08-01 07:43:22', '2019-08-01 07:43:22'),
+(15, 9, 'Solicitud de Asesoria', 'Test test', '2019-08-01 08:01:48', '2019-08-01 08:01:48'),
+(16, 9, 'Asesoria', 'Asesoria Hola: Aprobada', '2019-08-01 08:54:23', '2019-08-01 08:54:23'),
+(17, 9, 'Asesoria', 'Asesoria Prueba 1: Rechazada', '2019-08-01 08:59:50', '2019-08-01 08:59:50'),
+(18, 9, 'Inicio de sesión', 'Inicio de Sesión el 01/08/19', '2019-08-01 09:00:30', '2019-08-01 09:00:30');
 
 -- --------------------------------------------------------
 
@@ -601,13 +614,13 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
@@ -619,7 +632,7 @@ ALTER TABLE `deposits`
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
