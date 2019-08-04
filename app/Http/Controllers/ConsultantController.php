@@ -157,6 +157,13 @@ class ConsultantController extends Controller
     public function all_consultants(Request $request){
         if('ALL'===$request->type){
             $consultants=Consultant::all();
+        }else if($request->time){
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->select('consultants.*','careers.name as career_name')
+            ->where('careers.value','=',$request->type)
+            ->whereRaw(' \''.$request->time.'\' BETWEEN consultants.office_hours_from AND consultants.office_hours_to')
+            ->get();
         }else{
             $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
             ->join('careers','careers.id','=','career_consultant.career_id')
