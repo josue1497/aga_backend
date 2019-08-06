@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\HistoryUser;
 use App\ConsultantHistory;
 use App\Consultant;
+use Illuminate\Foundation\Auth\User;
 
 class DatingController extends Controller
 {
@@ -112,7 +113,16 @@ class DatingController extends Controller
         ->where('datings.dating_status','Solicitado')
         ->get();
 
-        // $result=$consultant->datings->join('users','users.id','=','datings.user_id')->get();
+        return response()->json($result);
+    }
+
+    public function datings_by_user(Request $request){
+
+        $result = User::join('datings','datings.user_id','=','users.id')
+        ->join('consultants','consultants.id','=','datings.consultant_id')
+        ->select('datings.*','consultants.name as conname','consultants.lastname as conape')
+        ->where('users.id',$request->user_id)
+        ->get();
 
         return response()->json($result);
     }
