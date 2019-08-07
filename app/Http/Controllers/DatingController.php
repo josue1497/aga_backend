@@ -122,6 +122,7 @@ class DatingController extends Controller
         ->join('consultants','consultants.id','=','datings.consultant_id')
         ->select('datings.*','consultants.name as conname','consultants.lastname as conape')
         ->where('users.id',$request->user_id)
+        ->orderBy('datings.for_date', 'DESC')
         ->get();
 
         return response()->json($result);
@@ -140,4 +141,17 @@ class DatingController extends Controller
 
         return json_encode('fail');
     }
+
+    public function cancelled_dating(Request $request){
+        $dating = Dating::where('id',$request->dating_id)->first();
+
+        $dating->dating_status='Cancelada';
+        if($dating->save()){
+            HistoryUser::add_to_history('Cancelacion de Asesoria.','Cancelo una solicitud de asesoria para el dia '.$dating->for_date, $dating->user_id);
+            return json_encode('ok');
+        }
+
+        return json_encode('fail');
+    }
+
 }

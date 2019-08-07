@@ -58,7 +58,7 @@ Route::resource('dating', 'DatingController');
 Route::post('dating/datings_by_consultant', 'DatingController@datings_by_consultant');
 Route::post('dating/datings_by_user', 'DatingController@datings_by_user');
 Route::post('dating/response_request', 'DatingController@response_request');
-
+Route::post('dating/cancelled_dating', 'DatingController@cancelled_dating');
 
 
 Route::resource('balance_consultant', 'BalanceConsultantController');
