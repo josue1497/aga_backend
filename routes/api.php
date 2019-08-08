@@ -25,15 +25,15 @@ Route::post('career/consultants', 'CareerController@consultants');
 
 
 Route::resource('consultant', 'ConsultantController');
-Route::post('consultant/singin/', 'ConsultantController@singin');
-Route::post('consultant/consultant_balance/', 'ConsultantController@consultant_balance');
-Route::post('consultant/all_consultants/', 'ConsultantController@all_consultants');
+Route::post('consultant/singin/', 'ConsultantController@singin')->name('consultant.singin');
+Route::post('consultant/consultant_balance/', 'ConsultantController@consultant_balance')->name('consultant.consultant_balance');
+Route::post('consultant/all_consultants/', 'ConsultantController@all_consultants')->name('consultant.all_consultants');
 
 
 Route::resource('user', 'UserController');
-Route::post('user/singin/', 'UserController@singin');
-Route::post('user/admin_singin/', 'UserController@admin_singin');
-Route::post('user/user_balance/', 'UserController@user_balance');
+Route::post('user/singin/', 'UserController@singin')->name('user.singin');
+Route::post('user/admin_singin/', 'UserController@admin_singin')->name('user.admin_singin');
+Route::post('user/user_balance/', 'UserController@user_balance')->name('user.user_balance');
 
 
 Route::resource('historyuser', 'HistoryUserController');
