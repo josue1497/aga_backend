@@ -162,9 +162,7 @@ class UserController extends Controller
                             ->where('roles.value', '=', $role)
                             ->get();
         if ($user) {
-
             HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
-
             return json_encode($user);
         } else {
             return '0';
