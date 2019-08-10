@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2019 a las 07:49:04
+-- Tiempo de generación: 10-08-2019 a las 06:54:39
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -21,8 +21,22 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ana_garcia_asociados`
 --
-CREATE DATABASE IF NOT EXISTS `ana_garcia_asociados` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `ana_garcia_asociados`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `account_consultants`
+--
+
+CREATE TABLE `account_consultants` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `consultant_id` int(10) UNSIGNED DEFAULT NULL,
+  `account_number` varchar(100) DEFAULT NULL,
+  `bank` varchar(200) DEFAULT NULL,
+  `to_use` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -30,7 +44,6 @@ USE `ana_garcia_asociados`;
 -- Estructura de tabla para la tabla `activity_logs`
 --
 
-DROP TABLE IF EXISTS `activity_logs`;
 CREATE TABLE `activity_logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -43,7 +56,6 @@ CREATE TABLE `activity_logs` (
 -- Estructura de tabla para la tabla `balance_consultants`
 --
 
-DROP TABLE IF EXISTS `balance_consultants`;
 CREATE TABLE `balance_consultants` (
   `id` int(10) UNSIGNED NOT NULL,
   `consultant_id` int(10) UNSIGNED DEFAULT NULL,
@@ -68,7 +80,6 @@ INSERT INTO `balance_consultants` (`id`, `consultant_id`, `amount`, `created_at`
 -- Estructura de tabla para la tabla `balance_users`
 --
 
-DROP TABLE IF EXISTS `balance_users`;
 CREATE TABLE `balance_users` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -84,7 +95,21 @@ CREATE TABLE `balance_users` (
 INSERT INTO `balance_users` (`id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 6, '0', '2019-07-19 07:50:52', '2019-07-19 07:50:52'),
 (3, 8, '0', '2019-07-19 08:09:02', '2019-07-19 08:09:02'),
-(4, 9, '0', '2019-07-19 08:10:19', '2019-07-19 08:10:19');
+(4, 9, '1030', '2019-07-19 08:10:19', '2019-08-10 08:12:38');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `banks`
+--
+
+CREATE TABLE `banks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `code` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -92,7 +117,6 @@ INSERT INTO `balance_users` (`id`, `user_id`, `amount`, `created_at`, `updated_a
 -- Estructura de tabla para la tabla `careers`
 --
 
-DROP TABLE IF EXISTS `careers`;
 CREATE TABLE `careers` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -115,7 +139,6 @@ INSERT INTO `careers` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUES
 -- Estructura de tabla para la tabla `career_consultant`
 --
 
-DROP TABLE IF EXISTS `career_consultant`;
 CREATE TABLE `career_consultant` (
   `career_id` int(10) UNSIGNED NOT NULL,
   `consultant_id` int(10) UNSIGNED NOT NULL,
@@ -139,7 +162,6 @@ INSERT INTO `career_consultant` (`career_id`, `consultant_id`, `created_at`, `up
 -- Estructura de tabla para la tabla `consultants`
 --
 
-DROP TABLE IF EXISTS `consultants`;
 CREATE TABLE `consultants` (
   `id` int(10) UNSIGNED NOT NULL,
   `identification_document` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -164,8 +186,8 @@ CREATE TABLE `consultants` (
 --
 
 INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `email`, `password`, `attach_document`, `attach_certification`, `validate`, `price_per_hour`, `office_hours_from`, `office_hours_to`, `created_at`, `updated_at`) VALUES
-(15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', NULL, NULL, NULL, '2019-06-30 07:40:33', '2019-06-30 07:40:33'),
-(17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'N', '10', '10:00:00', '20:00:00', '2019-07-19 07:53:53', '2019-07-19 07:53:53'),
+(15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', NULL, NULL, NULL, '2019-06-30 07:40:33', '2019-08-10 04:15:30'),
+(17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'Y', '10', '10:00:00', '20:00:00', '2019-07-19 07:53:53', '2019-08-10 04:14:45'),
 (18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'N', NULL, NULL, NULL, '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
 (19, '100000000', 'Jose', 'Perez', '1980-10-10', '1234-9892992', 'jperez@mail.com', '1234', NULL, NULL, 'N', '15', '08:00:00', '18:00:00', '2019-08-04 08:01:49', '2019-08-04 08:01:49');
 
@@ -175,7 +197,6 @@ INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, 
 -- Estructura de tabla para la tabla `consultant_history`
 --
 
-DROP TABLE IF EXISTS `consultant_history`;
 CREATE TABLE `consultant_history` (
   `id` int(10) UNSIGNED NOT NULL,
   `consultant_id` int(10) UNSIGNED DEFAULT NULL,
@@ -210,7 +231,19 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 (18, 17, 'Actualización de Perfil', 'Modificacion de la informacion de perfil del Asesor el 04/08/19', '2019-08-04 07:55:45', '2019-08-04 07:55:45'),
 (19, 17, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 07:56:37', '2019-08-04 07:56:37'),
 (20, 19, 'Registro', 'Registro de Asesor', '2019-08-04 08:01:50', '2019-08-04 08:01:50'),
-(21, 19, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 08:02:41', '2019-08-04 08:02:41');
+(21, 19, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 08:02:41', '2019-08-04 08:02:41'),
+(22, 17, 'Asesoria solicitada', 'Presupuesto Automatico', '2019-08-07 07:56:39', '2019-08-07 07:56:39'),
+(23, 17, 'Asesoria solicitada', 'Otra pureba de consulta', '2019-08-07 07:59:14', '2019-08-07 07:59:14'),
+(24, 17, 'Inicio de sesión', 'Inicio de Sesión el 07/08/19', '2019-08-07 08:05:59', '2019-08-07 08:05:59'),
+(25, 17, 'Inicio de sesión', 'Inicio de Sesión el 08/08/19', '2019-08-09 03:26:45', '2019-08-09 03:26:45'),
+(26, 15, 'Activacion', 'Se ha activado su usuario', '2019-08-10 03:59:59', '2019-08-10 03:59:59'),
+(27, 17, 'Activacion', 'Se ha activado su usuario', '2019-08-10 04:14:45', '2019-08-10 04:14:45'),
+(28, 15, 'Activacion', 'Se ha activado su usuario', '2019-08-10 04:15:30', '2019-08-10 04:15:30'),
+(29, 17, 'Asesoria solicitada', 'Hola', '2019-08-10 07:36:41', '2019-08-10 07:36:41'),
+(30, 17, 'Asesoria solicitada', 'Hola', '2019-08-10 07:41:36', '2019-08-10 07:41:36'),
+(31, 17, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 07:48:05', '2019-08-10 07:48:05'),
+(32, 17, 'Asesoria solicitada', 'Prueba', '2019-08-10 08:08:15', '2019-08-10 08:08:15'),
+(33, 17, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 08:13:56', '2019-08-10 08:13:56');
 
 -- --------------------------------------------------------
 
@@ -218,7 +251,6 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 -- Estructura de tabla para la tabla `datings`
 --
 
-DROP TABLE IF EXISTS `datings`;
 CREATE TABLE `datings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -240,12 +272,19 @@ CREATE TABLE `datings` (
 
 INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `dating_status`, `created_at`, `updated_at`) VALUES
 (1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', 'Rechazada', '2019-07-25 02:03:27', '2019-08-01 08:59:49'),
-(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', 'Solicitado', '2019-07-25 02:22:34', '2019-07-25 02:22:34'),
-(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', 'Solicitado', '2019-07-25 02:26:38', '2019-07-25 02:26:38'),
+(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', 'Cancelada', '2019-07-25 02:22:34', '2019-08-07 07:39:26'),
+(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', 'Cancelada', '2019-07-25 02:26:38', '2019-08-07 07:37:18'),
 (4, 9, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '1000', 'Aprobada', '2019-07-27 15:56:58', '2019-08-01 08:54:23'),
-(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', 'Solicitado', '2019-07-27 18:30:05', '2019-07-27 18:30:05'),
-(6, 9, 15, '2019-08-10 04:00:00', '10:00', '11:10', 'Highcharts Demo', 'Test test', '1000', 'Solicitado', '2019-08-01 08:01:47', '2019-08-01 08:01:47'),
-(7, NULL, 15, '2019-08-08 04:00:00', '10:00', '12:00', 'Prueba Remota', 'Hola esta es una prueba remota', '1000', 'Solicitado', '2019-08-02 06:16:16', '2019-08-02 06:16:16');
+(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', 'Cancelada', '2019-07-27 18:30:05', '2019-08-07 07:38:56'),
+(6, 9, 15, '2019-08-10 04:00:00', '10:00', '11:10', 'Highcharts Demo', 'Test test', '1000', 'Cancelada', '2019-08-01 08:01:47', '2019-08-10 08:11:31'),
+(7, NULL, 15, '2019-08-08 04:00:00', '10:00', '12:00', 'Prueba Remota', 'Hola esta es una prueba remota', '1000', 'Solicitado', '2019-08-02 06:16:16', '2019-08-02 06:16:16'),
+(8, NULL, 17, '2019-08-13 04:00:00', '13:00', '15:00', 'Prueba de Consulta', 'Presupuesto Automatico', '20', 'Solicitado', '2019-08-07 07:56:39', '2019-08-07 07:56:39'),
+(9, 9, 17, '2019-10-10 04:00:00', '10:00', '15:00', 'Nueva Prueba', 'Otra pureba de consulta', '50', 'Solicitado', '2019-08-07 07:59:14', '2019-08-07 07:59:14'),
+(10, 9, 17, '2019-08-15 04:00:00', '10:00', '15:00', 'Prueba Validando Presupuesto', 'Hola', '50', 'Solicitado', '2019-08-10 07:36:40', '2019-08-10 07:36:40'),
+(11, 9, 17, '2019-09-20 04:00:00', '10:00', '11:00', 'Segunda Prueba hoy', 'Hola', '10', 'Cancelada', '2019-08-10 07:41:36', '2019-08-10 08:12:35'),
+(12, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:06:44', '2019-08-10 08:06:44'),
+(13, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:07:29', '2019-08-10 08:07:29'),
+(14, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:08:11', '2019-08-10 08:08:11');
 
 -- --------------------------------------------------------
 
@@ -253,12 +292,14 @@ INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`
 -- Estructura de tabla para la tabla `deposits`
 --
 
-DROP TABLE IF EXISTS `deposits`;
 CREATE TABLE `deposits` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `amount` decimal(10,0) DEFAULT NULL,
   `document` varchar(256) DEFAULT NULL,
+  `referenceno` varchar(200) DEFAULT NULL,
+  `payment_method` varchar(100) DEFAULT NULL,
+  `bank_from` varchar(256) DEFAULT NULL,
   `deposit_status` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -268,13 +309,8 @@ CREATE TABLE `deposits` (
 -- Volcado de datos para la tabla `deposits`
 --
 
-INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `deposit_status`, `created_at`, `updated_at`) VALUES
-(1, 9, '100', 'nexus2cee_unnamed-11523072320191900.png', 'P', '2019-07-23 23:00:42', '2019-07-23 23:00:42'),
-(2, 9, '100', '1 cuenta josue24072420191422.PNG', 'P', '2019-07-24 18:22:38', '2019-07-24 18:22:38'),
-(3, 9, '100', '1 pago trasnferencia24072420191423.PNG', 'P', '2019-07-24 18:23:21', '2019-07-24 18:23:21'),
-(4, 9, '100', '1 cuenta josue24072420191423.PNG', 'P', '2019-07-24 18:23:52', '2019-07-24 18:23:52'),
-(5, 9, '100', '1 cuenta josue24072420191427.PNG', 'P', '2019-07-24 18:27:13', '2019-07-24 18:27:13'),
-(6, 9, '100', '1 cuenta josue27072720191432.PNG', 'P', '2019-07-27 18:32:31', '2019-07-27 18:32:31');
+INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `referenceno`, `payment_method`, `bank_from`, `deposit_status`, `created_at`, `updated_at`) VALUES
+(9, 9, '200', '52684422_2231854323750791_6293877017230180352_n0908092019144.jpg', '00009102223', 'Transferencia', 'Banco Plaza Banco Universal', 'A', '2019-08-09 05:44:43', '2019-08-10 07:27:31');
 
 -- --------------------------------------------------------
 
@@ -282,7 +318,6 @@ INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `deposit_status`,
 -- Estructura de tabla para la tabla `history_user`
 --
 
-DROP TABLE IF EXISTS `history_user`;
 CREATE TABLE `history_user` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -327,7 +362,40 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (28, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 08:53:14', '2019-08-04 08:53:14'),
 (29, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 08:53:59', '2019-08-04 08:53:59'),
 (30, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 08:55:29', '2019-08-04 08:55:29'),
-(31, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 09:03:02', '2019-08-04 09:03:02');
+(31, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 09:03:02', '2019-08-04 09:03:02'),
+(32, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 22:42:38', '2019-08-04 22:42:38'),
+(33, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 23:17:20', '2019-08-04 23:17:20'),
+(34, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 23:39:02', '2019-08-04 23:39:02'),
+(35, 9, 'Inicio de sesión', 'Inicio de Sesión el 04/08/19', '2019-08-04 23:56:05', '2019-08-04 23:56:05'),
+(36, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/08/19', '2019-08-06 08:28:31', '2019-08-06 08:28:31'),
+(37, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/08/19', '2019-08-06 08:30:39', '2019-08-06 08:30:39'),
+(38, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/08/19', '2019-08-06 10:04:07', '2019-08-06 10:04:07'),
+(39, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/08/19', '2019-08-06 10:47:27', '2019-08-06 10:47:27'),
+(40, 9, 'Inicio de sesión', 'Inicio de Sesión el 07/08/19', '2019-08-07 04:07:43', '2019-08-07 04:07:43'),
+(41, 9, 'Inicio de sesión', 'Inicio de Sesión el 07/08/19', '2019-08-07 06:17:47', '2019-08-07 06:17:47'),
+(42, NULL, 'Solicitud de Asesoria', 'Presupuesto Automatico', '2019-08-07 07:56:39', '2019-08-07 07:56:39'),
+(43, 9, 'Solicitud de Asesoria', 'Otra pureba de consulta', '2019-08-07 07:59:14', '2019-08-07 07:59:14'),
+(44, 9, 'Actualización de Perfil', 'Modificacion de la informacion de perfil de usuario el 07/08/19', '2019-08-07 08:00:27', '2019-08-07 08:00:27'),
+(45, 9, 'Inicio de sesión', 'Inicio de Sesión el 08/08/19', '2019-08-09 03:31:52', '2019-08-09 03:31:52'),
+(46, 2, 'Inicio de sesión', 'Inicio de Sesión el 08/08/19', '2019-08-09 03:40:14', '2019-08-09 03:40:14'),
+(47, 9, 'Inicio de sesión', 'Inicio de Sesión el 09/08/19', '2019-08-09 05:22:18', '2019-08-09 05:22:18'),
+(48, 9, 'Deposito', 'Ingreso de deposito por 1000$, el09/08/19', '2019-08-09 05:40:58', '2019-08-09 05:40:58'),
+(49, 9, 'Deposito', 'Ingreso de deposito por 40000$, el09/08/19', '2019-08-09 05:43:28', '2019-08-09 05:43:28'),
+(50, 9, 'Deposito', 'Ingreso de deposito por 200$, el09/08/19', '2019-08-09 05:44:44', '2019-08-09 05:44:44'),
+(51, 2, 'Inicio de sesión', 'Inicio de Sesión el 09/08/19', '2019-08-10 02:54:59', '2019-08-10 02:54:59'),
+(52, 9, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 04:10:02', '2019-08-10 04:10:02'),
+(53, 2, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 04:13:08', '2019-08-10 04:13:08'),
+(54, 9, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 04:18:17', '2019-08-10 04:18:17'),
+(55, 2, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 04:19:05', '2019-08-10 04:19:05'),
+(56, 9, 'Deposito', 'Deposito 00009102223 Aprobado', '2019-08-10 07:26:46', '2019-08-10 07:26:46'),
+(57, 9, 'Deposito', 'Deposito 00009102223 Aprobado', '2019-08-10 07:27:34', '2019-08-10 07:27:34'),
+(58, 9, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 07:27:59', '2019-08-10 07:27:59'),
+(59, 9, 'Solicitud de Asesoria', 'Hola', '2019-08-10 07:36:40', '2019-08-10 07:36:40'),
+(60, 9, 'Solicitud de Asesoria', 'Hola', '2019-08-10 07:41:36', '2019-08-10 07:41:36'),
+(61, 2, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 07:55:39', '2019-08-10 07:55:39'),
+(62, 9, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 08:06:08', '2019-08-10 08:06:08'),
+(63, 9, 'Solicitud de Asesoria', 'Prueba', '2019-08-10 08:08:15', '2019-08-10 08:08:15'),
+(64, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 2019-09-20 00:00:00', '2019-08-10 08:12:40', '2019-08-10 08:12:40');
 
 -- --------------------------------------------------------
 
@@ -335,7 +403,6 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 -- Estructura de tabla para la tabla `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -364,7 +431,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Estructura de tabla para la tabla `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -377,12 +443,34 @@ CREATE TABLE `password_resets` (
 -- Estructura de tabla para la tabla `payments`
 --
 
-DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(10) UNSIGNED NOT NULL,
   `dating_id` int(10) UNSIGNED DEFAULT NULL,
   `dating_amount` decimal(10,0) DEFAULT NULL,
   `payment_status` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `payments`
+--
+
+INSERT INTO `payments` (`id`, `dating_id`, `dating_amount`, `payment_status`, `created_at`, `updated_at`) VALUES
+(1, 14, '40', 'P', '2019-08-10 08:08:13', '2019-08-10 08:08:13');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `retirement`
+--
+
+CREATE TABLE `retirement` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `consultant_id` int(10) UNSIGNED DEFAULT NULL,
+  `amount` decimal(10,0) DEFAULT NULL,
+  `retirement_status` varchar(100) DEFAULT NULL,
+  `bank_to` varchar(200) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -393,7 +481,6 @@ CREATE TABLE `payments` (
 -- Estructura de tabla para la tabla `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -416,7 +503,6 @@ INSERT INTO `roles` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUES
 -- Estructura de tabla para la tabla `tests`
 --
 
-DROP TABLE IF EXISTS `tests`;
 CREATE TABLE `tests` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -430,7 +516,6 @@ CREATE TABLE `tests` (
 -- Estructura de tabla para la tabla `transactions_user`
 --
 
-DROP TABLE IF EXISTS `transactions_user`;
 CREATE TABLE `transactions_user` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -446,7 +531,10 @@ CREATE TABLE `transactions_user` (
 
 INSERT INTO `transactions_user` (`id`, `user_id`, `transaction_type`, `movement_id`, `created_at`, `updated_at`) VALUES
 (1, 9, 'Pago', 5, '2019-07-24 18:27:16', '2019-07-24 18:27:16'),
-(2, 9, 'Deposito', 6, '2019-07-27 18:32:32', '2019-07-27 18:32:32');
+(2, 9, 'Deposito', 6, '2019-07-27 18:32:32', '2019-07-27 18:32:32'),
+(3, 9, 'Deposito', 7, '2019-08-09 05:41:00', '2019-08-09 05:41:00'),
+(4, 9, 'Deposito', 8, '2019-08-09 05:43:28', '2019-08-09 05:43:28'),
+(5, 9, 'Deposito', 9, '2019-08-09 05:44:46', '2019-08-09 05:44:46');
 
 -- --------------------------------------------------------
 
@@ -454,7 +542,6 @@ INSERT INTO `transactions_user` (`id`, `user_id`, `transaction_type`, `movement_
 -- Estructura de tabla para la tabla `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `identification_document` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -478,7 +565,7 @@ INSERT INTO `users` (`id`, `identification_document`, `name`, `lastname`, `birth
 (1, '123456', 'Josue', 'Martinez', '1010-10-10', '299930', NULL, 'jmartinezm@intelix.biz', '1234', NULL, '2019-07-15 01:32:35', '2019-07-15 01:32:35'),
 (2, '1000000', 'Administrador', 'Administrador', '2019-07-14', NULL, NULL, 'admin', 'admin', NULL, NULL, NULL),
 (6, '1234555', 'Nuevo', 'Usuario', '1000-10-10', '10290192', NULL, 'nuevo@mail.com', '1234', NULL, '2019-07-19 07:50:46', '2019-07-19 07:50:46'),
-(9, '39393993', 'Josue', 'Martinez', '1010-10-10', '0292019', NULL, 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14');
+(9, '24537817', 'Josue', 'Martinez', '1010-10-10', '0292019', NULL, 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14');
 
 -- --------------------------------------------------------
 
@@ -486,7 +573,6 @@ INSERT INTO `users` (`id`, `identification_document`, `name`, `lastname`, `birth
 -- Estructura de tabla para la tabla `user_role`
 --
 
-DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL,
@@ -509,6 +595,12 @@ INSERT INTO `user_role` (`user_id`, `role_id`, `created_at`, `updated_at`) VALUE
 --
 
 --
+-- Indices de la tabla `account_consultants`
+--
+ALTER TABLE `account_consultants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `activity_logs`
 --
 ALTER TABLE `activity_logs`
@@ -524,6 +616,12 @@ ALTER TABLE `balance_consultants`
 -- Indices de la tabla `balance_users`
 --
 ALTER TABLE `balance_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `banks`
+--
+ALTER TABLE `banks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -590,6 +688,12 @@ ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `retirement`
+--
+ALTER TABLE `retirement`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -627,6 +731,12 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `account_consultants`
+--
+ALTER TABLE `account_consultants`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `activity_logs`
 --
 ALTER TABLE `activity_logs`
@@ -645,6 +755,12 @@ ALTER TABLE `balance_users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `banks`
+--
+ALTER TABLE `banks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `careers`
 --
 ALTER TABLE `careers`
@@ -660,25 +776,25 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -690,6 +806,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `retirement`
+--
+ALTER TABLE `retirement`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -708,7 +830,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT de la tabla `transactions_user`
 --
 ALTER TABLE `transactions_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

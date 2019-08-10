@@ -8,6 +8,8 @@ use App\HistoryUser;
 use App\ConsultantHistory;
 use App\Consultant;
 use Illuminate\Foundation\Auth\User;
+use App\BalanceUser;
+use App\Payment;
 
 class DatingController extends Controller
 {
@@ -40,15 +42,31 @@ class DatingController extends Controller
     public function store(Request $request)
     {
         $dating = new Dating();
-
         $data = $request->only($dating->getFillable());
 
+        $balance = BalanceUser::where('user_id', $request->user_id)->first();
+
+        if($balance->amount<$data['price']){
+            return json_encode('No tiene fondo suficientes para cubrir esta asesoria.');
+        }
+
+        if(strtotime(date("d-m-Y H:i:00",time()))>strtotime($data['for_date'])){
+            return json_encode('No puede apartar citas para días pasados.');
+        }
+
         $dating->fill($data);
-        // $date= strtotime($fecha);
-        // $to_date=date('Y-m-d', $date);
-        // $dating->for_date=$to_date;
 
         if($dating->save()){
+            $balance = BalanceUser::where('user_id', $dating->user_id)->first();
+            $balance->amount = ($balance->amount-$dating->price);
+            $balance->save();
+
+            $payment=new Payment();
+            $payment->dating_id=$dating->id;
+            $payment->dating_amount=$dating->price;
+            $payment->payment_status='P';
+            $payment->save();
+
             HistoryUser::add_to_history('Solicitud de Asesoria',$dating->summary,$dating->user_id);
             ConsultantHistory::add_to_history('Asesoria solicitada',$dating->summary,$dating->consultant_id);
             return response()->json('ok');
@@ -147,6 +165,18 @@ class DatingController extends Controller
 
         $dating->dating_status='Cancelada';
         if($dating->save()){
+
+            $balance = BalanceUser::where('user_id', $dating->user_id)->first();
+            $balance->amount = ($balance->amount+$dating->price);
+            $balance->save();
+
+            $payment=Payment::where('dating_id',$dating->id)->first();
+            if($payment){
+                $payment->payment_status='A';
+                $payment->save();
+            }
+
+
             HistoryUser::add_to_history('Cancelacion de Asesoria.','Cancelo una solicitud de asesoria para el dia '.$dating->for_date, $dating->user_id);
             return json_encode('ok');
         }

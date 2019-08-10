@@ -28,6 +28,10 @@ Route::resource('consultant', 'ConsultantController');
 Route::post('consultant/singin/', 'ConsultantController@singin')->name('consultant.singin');
 Route::post('consultant/consultant_balance/', 'ConsultantController@consultant_balance')->name('consultant.consultant_balance');
 Route::post('consultant/all_consultants/', 'ConsultantController@all_consultants')->name('consultant.all_consultants');
+Route::post('consultant/activate_or_desactivate_consultant/', 'ConsultantController@activate_or_desactivate_consultant')->name('consultant.activate_or_desactivate_consultant');
+Route::post('consultant/all_activate_consultants/', 'ConsultantController@all_activate_consultants')->name('consultant.all_activate_consultants');
+
+
 
 
 Route::resource('user', 'UserController');
@@ -45,6 +49,10 @@ Route::post('consultanthistory/all_histories', 'ConsultantHistoryController@all_
 
 Route::resource('deposit', 'DepositController');
 Route::post('deposit/upload', 'DepositController@upload');
+Route::post('deposit/get_all_deposits', 'DepositController@get_all_deposits');
+Route::post('deposit/deposit_user', 'DepositController@deposit_user');
+Route::post('deposit/get_all_pending_deposits', 'DepositController@get_all_pending_deposits');
+Route::post('deposit/update_deposit_status', 'DepositController@update_deposit_status');
 
 
 Route::resource('balance_user', 'BalanceUserController');

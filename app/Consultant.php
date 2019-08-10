@@ -32,4 +32,12 @@ class Consultant extends Model
         return $this->hasMany('App\Dating')->orderBy('created_at', 'ASC');
     }
 
+    public function retirements(){
+        return $this->hasMany('App\Retirement')->orderBy('created_at', 'DESC');
+     }
+
+     public function AccountConsultant(){
+        return $this->hasMany('App\AccountConsultant')->orderBy('created_at', 'DESC');
+     }
+
 }

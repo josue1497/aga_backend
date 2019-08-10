@@ -7,6 +7,7 @@ use App\Consultant;
 use App\Career;
 use App\BalanceConsultant;
 use App\ConsultantHistory;
+use Illuminate\Http\Response;
 
 class ConsultantController extends Controller
 {
@@ -156,7 +157,10 @@ class ConsultantController extends Controller
 
     public function all_consultants(Request $request){
         if('ALL'===$request->type){
-            $consultants=Consultant::all();
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->select('consultants.*','careers.name as career_name')
+            ->get();
         }else if($request->time){
             $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
             ->join('careers','careers.id','=','career_consultant.career_id')
@@ -173,4 +177,47 @@ class ConsultantController extends Controller
 
         return json_encode($consultants);
     }
+
+    public function all_activate_consultants(Request $request){
+        if('ALL'===$request->type){
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->where('consultants.validate','=','Y')
+            ->select('consultants.*','careers.name as career_name')
+            ->get();
+        }else if($request->time){
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->select('consultants.*','careers.name as career_name')
+            ->where('careers.value','=',$request->type)
+            ->where('consultants.validate','=','Y')
+            ->whereRaw(' \''.$request->time.'\' BETWEEN consultants.office_hours_from AND consultants.office_hours_to')
+            ->get();
+        }else{
+            $consultants=Consultant::join('career_consultant','career_consultant.consultant_id','=','consultants.id')
+            ->join('careers','careers.id','=','career_consultant.career_id')
+            ->select('consultants.*','careers.name as career_name')
+            ->where('careers.value','=',$request->type)
+            ->where('consultants.validate','=','Y')
+            ->get();
+        }
+
+        return json_encode($consultants);
+    }
+
+    public function activate_or_desactivate_consultant(Request $request){
+        $action=$request->action_to;
+        $value=$request->value;
+        $consultan=Consultant::where('id',$request->consultant_id)->first();
+
+        $consultan->validate=$value;
+
+        if($consultan->save()){
+            ConsultantHistory::add_to_history('Activacion','Se ha activado su usuario',$consultan->id);
+            return json_encode('ok');
+        }else{
+            return json_encode('fail');
+        }
+    }
+
 }

@@ -160,7 +160,7 @@ class UserController extends Controller
                             ->select('users.*')->where('email', '=', $mail)
                             ->where('password', '=', $pass)
                             ->where('roles.value', '=', $role)
-                            ->get();
+                            ->first();
         if ($user) {
             HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
             return json_encode($user);
