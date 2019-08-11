@@ -87,7 +87,7 @@ class BalanceConsultantController extends Controller
         $balance = BalanceConsultant::where('consultant_id',$request->consultant_id)->first();
 
         if($balance){
-            return json_encode($balance->amount.'$');
+            return json_encode($balance->amount.' Bs');
         }else{
             return json_encode('Saldo no Disponible para este Asesor');
         }

@@ -139,10 +139,7 @@ class UserController extends Controller
         if ($user) {
 
             HistoryUser::add_to_history('Inicio de sesión',"Inicio de Sesión el ".@date("d/m/y"),$user->id);
-           $temp= response()->json($user,200);
-           error_log(json_encode($temp));
             return  response()->json($user,200);
-            //json_encode($user);
         } else {
             return '0';
         }

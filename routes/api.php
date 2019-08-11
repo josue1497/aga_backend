@@ -72,6 +72,16 @@ Route::post('dating/cancelled_dating', 'DatingController@cancelled_dating');
 Route::resource('balance_consultant', 'BalanceConsultantController');
 Route::post('balance_consultant/get_balance', 'BalanceConsultantController@get_balance');
 
+Route::resource('account_consultant', 'AccountConsultantController');
+Route::post('account_consultant/get_account_consultant', 'AccountConsultantController@get_account_consultant');
+Route::post('account_consultant/update_use_acct', 'AccountConsultantController@update_use_acct');
+
+Route::resource('retirement', 'RetirementController');
+Route::post('retirement/submit_retirement', 'RetirementController@submit_retirement');
+
+
+
+
 
 
 

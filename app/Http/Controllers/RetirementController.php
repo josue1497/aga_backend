@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Retirement;
+use App\ConsultantHistory;
 
 class RetirementController extends Controller
 {
@@ -80,5 +82,21 @@ class RetirementController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function submit_retirement(Request $request)
+    {
+
+        $retirement = new Retirement();
+        $data = $request->only($retirement->getFillable());
+
+
+        if ($retirement->fill($data)->save()) {
+            ConsultantHistory::add_to_history('Retiro', 'Solicitud de Retiro', $retirement->consultant_id);
+            return json_encode('ok');
+        }else{
+            return json_encode('fail');
+        }
+        return json_encode($request);
     }
 }

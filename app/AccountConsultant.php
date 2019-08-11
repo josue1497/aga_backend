@@ -8,7 +8,7 @@ class AccountConsultant extends Model
 {
     protected $table = 'account_consultants';
 
-    protected $fillable = ['account_number', 'bank', 'to_use', 'bank_to'];
+    protected $fillable = ['consultant_id','account_number', 'bank', 'to_use'];
 
     public function consultant(){
         return $this->belongsTo('App\Consultant');
