@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2019 a las 07:36:01
+-- Tiempo de generación: 13-08-2019 a las 09:12:08
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -431,7 +431,8 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (75, 2, 'Inicio de sesión', 'Inicio de Sesión el 10/08/19', '2019-08-10 20:07:06', '2019-08-10 20:07:06'),
 (76, 9, 'Asesoria', 'Asesoria Nueva Prueba: Aprobada', '2019-08-10 20:09:32', '2019-08-10 20:09:32'),
 (77, 9, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-10 20:09:42', '2019-08-10 20:09:42'),
-(78, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/08/19', '2019-08-11 08:48:16', '2019-08-11 08:48:16');
+(78, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/08/19', '2019-08-11 08:48:16', '2019-08-11 08:48:16'),
+(79, 2, 'Inicio de sesión', 'Inicio de Sesión el 13/08/19', '2019-08-13 10:27:10', '2019-08-13 10:27:10');
 
 -- --------------------------------------------------------
 
@@ -460,6 +461,28 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2019_06_22_164644_create_careers', 1),
 (9, '2019_06_22_212933_create_career_consultant', 1),
 (10, '2019_06_22_214212_create_user_role', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parameters`
+--
+
+CREATE TABLE `parameters` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `parameters`
+--
+
+INSERT INTO `parameters` (`id`, `name`, `description`, `value`, `created_at`, `updated_at`) VALUES
+(2, 'Salario_Asesores', 'Honorario por hora para los asesores', '40000', '2019-08-13 10:57:10', '2019-08-13 10:57:10');
 
 -- --------------------------------------------------------
 
@@ -725,6 +748,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `parameters`
+--
+ALTER TABLE `parameters`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -843,13 +872,19 @@ ALTER TABLE `deposits`
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `parameters`
+--
+ALTER TABLE `parameters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `payments`
