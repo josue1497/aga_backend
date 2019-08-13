@@ -79,6 +79,11 @@ Route::post('account_consultant/update_use_acct', 'AccountConsultantController@u
 Route::resource('retirement', 'RetirementController');
 Route::post('retirement/submit_retirement', 'RetirementController@submit_retirement');
 
+Route::resource('parameter', 'ParameterController');
+Route::post('parameter/all', 'ParameterController@all');
+
+
+
 
 
 
