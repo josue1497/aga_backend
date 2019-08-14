@@ -8,6 +8,7 @@ use App\TransactionUser;
 use App\HistoryUser;
 use Illuminate\Http\Response;
 use App\BalanceUser;
+use App\User;
 
 class DepositController extends Controller
 {
@@ -130,7 +131,7 @@ class DepositController extends Controller
     public function deposit_user(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $result = $user->deposits();
+        $result = $user->deposits;
         return json_encode($result);
     }
 

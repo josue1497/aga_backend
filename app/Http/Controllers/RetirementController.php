@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consultant;
 use Illuminate\Http\Request;
 use App\Retirement;
 use App\ConsultantHistory;
@@ -98,5 +99,13 @@ class RetirementController extends Controller
             return json_encode('fail');
         }
         return json_encode($request);
+    }
+
+    public function get_retirement_consultant(Request $request){
+        $consultant = Consultant::where('id',$request->consultant_id)->first();
+
+        $result=$consultant->retirements;
+
+        return json_encode($result);
     }
 }

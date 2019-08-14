@@ -30,14 +30,14 @@ Route::post('consultant/consultant_balance/', 'ConsultantController@consultant_b
 Route::post('consultant/all_consultants/', 'ConsultantController@all_consultants')->name('consultant.all_consultants');
 Route::post('consultant/activate_or_desactivate_consultant/', 'ConsultantController@activate_or_desactivate_consultant')->name('consultant.activate_or_desactivate_consultant');
 Route::post('consultant/all_activate_consultants/', 'ConsultantController@all_activate_consultants')->name('consultant.all_activate_consultants');
-
-
+Route::post('consultant/limit_five_dating/', 'ConsultantController@limit_five_dating')->name('consultant.limit_five_dating');
 
 
 Route::resource('user', 'UserController');
 Route::post('user/singin/', 'UserController@singin')->name('user.singin');
 Route::post('user/admin_singin/', 'UserController@admin_singin')->name('user.admin_singin');
 Route::post('user/user_balance/', 'UserController@user_balance')->name('user.user_balance');
+Route::post('user/limit_five_dating/', 'UserController@limit_five_dating')->name('user.limit_five_dating');
 
 
 Route::resource('historyuser', 'HistoryUserController');
@@ -78,9 +78,15 @@ Route::post('account_consultant/update_use_acct', 'AccountConsultantController@u
 
 Route::resource('retirement', 'RetirementController');
 Route::post('retirement/submit_retirement', 'RetirementController@submit_retirement');
+Route::post('retirement/get_retirement_consultant', 'RetirementController@get_retirement_consultant');
 
 Route::resource('parameter', 'ParameterController');
 Route::post('parameter/all', 'ParameterController@all');
+
+Route::resource('payment', 'PaymentController');
+Route::post('payment/get_payments_consultant', 'PaymentController@get_payments_consultant');
+Route::post('payment/get_payments_users', 'PaymentController@get_payments_users');
+
 
 
 

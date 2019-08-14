@@ -50,7 +50,7 @@ class User extends Model
     }
 
     public function deposits(){
-        $this->hasMany('App\Deposit')->orderBy('created_at', 'DESC');
+        return $this->hasMany('App\Deposit')->orderBy('created_at', 'DESC');
     }
 
     public function histories(){

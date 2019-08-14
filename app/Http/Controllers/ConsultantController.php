@@ -8,6 +8,7 @@ use App\Career;
 use App\BalanceConsultant;
 use App\ConsultantHistory;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class ConsultantController extends Controller
 {
@@ -218,6 +219,16 @@ class ConsultantController extends Controller
         }else{
             return json_encode('fail');
         }
+    }
+
+    public function limit_five_dating(Request $request){
+        $datings=DB::select('select * from datings
+        where consultant_id=?
+        and dating_status in (\'Aprobada\',\'Solicitado\')
+        order by for_date desc
+        limit 5', [$request->consultant_id]);
+
+        return json_encode($datings);
     }
 
 }

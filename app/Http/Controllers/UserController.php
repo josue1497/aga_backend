@@ -7,7 +7,7 @@ use App\User;
 use App\Role;
 use App\BalanceUser;
 use App\HistoryUser;
-
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -171,5 +171,15 @@ class UserController extends Controller
         $balance=$user->BalanceUser;
 
         return json_encode($balance);
+    }
+
+    public function limit_five_dating(Request $request){
+        $datings=DB::select('select * from datings
+        where user_id=?
+        and dating_status in (\'Aprobada\',\'Solicitado\')
+        order by for_date desc
+        limit 5', [$request->user_id]);
+
+        return json_encode($datings);
     }
 }

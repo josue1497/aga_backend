@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -81,5 +82,31 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function get_payments_users(Request $request)
+    {
+        $payments = DB::select('select b.title, b.for_date, concat(d.name,\' \',d.lastname)
+                                as consultantname, a.dating_amount, a.payment_status
+                                from payments a
+                                inner join datings b on (a.dating_id=b.id)
+                                inner join users c on (c.id=b.user_id)
+                                inner join consultants d on (d.id=b.consultant_id)
+                                where c.id=? order by a.created_at desc', [$request->user_id]);
+
+        return json_encode($payments);
+    }
+
+    public function get_payments_consultant(Request $request)
+    {
+        $payments = DB::select('select b.title, b.for_date, concat(c.name,\' \',c.lastname) as username,
+        a.dating_amount, a.payment_status from payments a
+        inner join datings b on (a.dating_id=b.id)
+        inner join users c on (c.id=b.user_id)
+        inner join consultants d on (d.id=b.consultant_id)
+        where d.id=?
+        order by a.created_at desc', [$request->consultant_id]);
+
+        return json_encode($payments);
     }
 }
