@@ -38,6 +38,8 @@ Route::post('user/singin/', 'UserController@singin')->name('user.singin');
 Route::post('user/admin_singin/', 'UserController@admin_singin')->name('user.admin_singin');
 Route::post('user/user_balance/', 'UserController@user_balance')->name('user.user_balance');
 Route::post('user/limit_five_dating/', 'UserController@limit_five_dating')->name('user.limit_five_dating');
+Route::post('user/change_password/', 'UserController@change_password')->name('user.change_password');
+Route::post('user/current_password/', 'UserController@current_password')->name('user.current_password');
 
 
 Route::resource('historyuser', 'HistoryUserController');
@@ -67,6 +69,8 @@ Route::post('dating/datings_by_consultant', 'DatingController@datings_by_consult
 Route::post('dating/datings_by_user', 'DatingController@datings_by_user');
 Route::post('dating/response_request', 'DatingController@response_request');
 Route::post('dating/cancelled_dating', 'DatingController@cancelled_dating');
+Route::post('dating/report_for_states', 'DatingController@report_for_states');
+Route::post('dating/report_for_careers', 'DatingController@report_for_careers');
 
 
 Route::resource('balance_consultant', 'BalanceConsultantController');

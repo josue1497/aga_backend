@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-08-2019 a las 09:12:08
+-- Tiempo de generación: 15-08-2019 a las 07:27:56
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -103,7 +103,8 @@ CREATE TABLE `balance_users` (
 INSERT INTO `balance_users` (`id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 6, '0', '2019-07-19 07:50:52', '2019-07-19 07:50:52'),
 (3, 8, '0', '2019-07-19 08:09:02', '2019-07-19 08:09:02'),
-(4, 9, '1330', '2019-07-19 08:10:19', '2019-08-10 20:01:31');
+(4, 9, '41330', '2019-07-19 08:10:19', '2019-08-14 04:47:26'),
+(5, 10, '960000', '2019-08-15 07:17:44', '2019-08-15 07:21:36');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,6 @@ CREATE TABLE `consultants` (
   `attach_document` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attach_certification` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `validate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
-  `price_per_hour` varchar(999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `office_hours_from` time DEFAULT NULL,
   `office_hours_to` time DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -193,11 +193,11 @@ CREATE TABLE `consultants` (
 -- Volcado de datos para la tabla `consultants`
 --
 
-INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `email`, `password`, `attach_document`, `attach_certification`, `validate`, `price_per_hour`, `office_hours_from`, `office_hours_to`, `created_at`, `updated_at`) VALUES
-(15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', NULL, NULL, NULL, '2019-06-30 07:40:33', '2019-08-10 04:15:30'),
-(17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'Y', '10', '10:00:00', '20:00:00', '2019-07-19 07:53:53', '2019-08-10 04:14:45'),
-(18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'N', NULL, NULL, NULL, '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
-(19, '100000000', 'Jose', 'Perez', '1980-10-10', '1234-9892992', 'jperez@mail.com', '1234', NULL, NULL, 'N', '15', '08:00:00', '18:00:00', '2019-08-04 08:01:49', '2019-08-04 08:01:49');
+INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `email`, `password`, `attach_document`, `attach_certification`, `validate`, `office_hours_from`, `office_hours_to`, `created_at`, `updated_at`) VALUES
+(15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '123', NULL, NULL, 'N', NULL, NULL, '2019-06-30 07:40:33', '2019-08-10 04:15:30'),
+(17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'Y', '10:00:00', '20:00:00', '2019-07-19 07:53:53', '2019-08-10 04:14:45'),
+(18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'N', NULL, NULL, '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
+(19, '100000000', 'Jose', 'Perez', '1980-10-10', '1234-9892992', 'jperez@mail.com', '1234', NULL, NULL, 'N', '08:00:00', '18:00:00', '2019-08-04 08:01:49', '2019-08-04 08:01:49');
 
 -- --------------------------------------------------------
 
@@ -262,7 +262,13 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 (41, 17, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-10 20:09:42', '2019-08-10 20:09:42'),
 (42, 17, 'Inicio de sesión', 'Inicio de Sesión el 11/08/19', '2019-08-11 08:11:52', '2019-08-11 08:11:52'),
 (43, 17, 'Retiro', 'Solicitud de Retiro', '2019-08-11 08:26:00', '2019-08-11 08:26:00'),
-(44, 17, 'Retiro', 'Solicitud de Retiro', '2019-08-11 08:31:17', '2019-08-11 08:31:17');
+(44, 17, 'Retiro', 'Solicitud de Retiro', '2019-08-11 08:31:17', '2019-08-11 08:31:17'),
+(45, 17, 'Asesoria solicitada', 'Prueba de contador de la hora', '2019-08-14 04:40:38', '2019-08-14 04:40:38'),
+(46, 17, 'Asesoria solicitada', 'Hola', '2019-08-14 04:47:27', '2019-08-14 04:47:27'),
+(47, 17, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 08:20:41', '2019-08-14 08:20:41'),
+(48, 17, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 08:28:54', '2019-08-14 08:28:54'),
+(49, 17, 'Asesoria solicitada', 'Nueva PRueba con nuevo Usuario', '2019-08-15 07:21:37', '2019-08-15 07:21:37'),
+(50, 17, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:18:34', '2019-08-15 09:18:34');
 
 -- --------------------------------------------------------
 
@@ -305,7 +311,10 @@ INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`
 (13, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:07:29', '2019-08-10 08:07:29'),
 (14, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:08:11', '2019-08-10 08:08:11'),
 (15, 9, 17, '2019-10-10 04:00:00', '10:00', '12:00', 'Group', 'hshshjs', '20', 'Cancelada', '2019-08-10 19:55:37', '2019-08-10 19:56:49'),
-(16, 9, 17, '2019-08-11 04:00:00', '10:00', '12:00', NULL, NULL, '20', 'Cancelada', '2019-08-10 20:01:03', '2019-08-10 20:01:31');
+(16, 9, 17, '2019-08-11 04:00:00', '10:00', '12:00', NULL, NULL, '20', 'Cancelada', '2019-08-10 20:01:03', '2019-08-10 20:01:31'),
+(17, 9, 17, '2019-10-10 04:00:00', '10:00', '13:0', 'Prueba', 'Prueba de contador de la hora', '120000', 'Solicitado', '2019-08-14 04:40:37', '2019-08-14 04:40:37'),
+(18, 9, 17, '2019-10-10 04:00:00', '10:10', '11:10', 'Prueba Formato', 'Hola', '40000', 'Solicitado', '2019-08-14 04:47:26', '2019-08-14 04:47:26'),
+(19, 10, 17, '2019-08-19 04:00:00', '10:00', '11:00', 'Highcharts Demo', 'Nueva PRueba con nuevo Usuario', '40000', 'Solicitado', '2019-08-15 07:21:36', '2019-08-15 07:21:36');
 
 -- --------------------------------------------------------
 
@@ -332,7 +341,9 @@ CREATE TABLE `deposits` (
 
 INSERT INTO `deposits` (`id`, `user_id`, `amount`, `document`, `referenceno`, `payment_method`, `bank_from`, `deposit_status`, `created_at`, `updated_at`) VALUES
 (9, 9, '200', '52684422_2231854323750791_6293877017230180352_n0908092019144.jpg', '00009102223', 'Transferencia', 'Banco Plaza Banco Universal', 'A', '2019-08-09 05:44:43', '2019-08-10 07:27:31'),
-(10, 9, '300', 'DR__153243929656710081020191557.jpeg', '00000001', 'Pago Movil', 'Banco Provincial, S.A. Banco Universal', 'A', '2019-08-10 19:57:48', '2019-08-10 19:59:20');
+(10, 9, '300', 'DR__153243929656710081020191557.jpeg', '00000001', 'Pago Movil', 'Banco Provincial, S.A. Banco Universal', 'A', '2019-08-10 19:57:48', '2019-08-10 19:59:20'),
+(11, 9, '200000', '1 pago trasnferencia1408142019037.PNG', '2388398298289298', 'Pago Movil', 'Bancaribe C.A. Banco Universal', 'A', '2019-08-14 04:37:19', '2019-08-14 04:38:14'),
+(12, 10, '1000000', '1 cuenta josue1508152019320.PNG', '109920111', 'Transferencia', 'Banco Sofitasa Banco Universal', 'A', '2019-08-15 07:20:00', '2019-08-15 07:20:25');
 
 -- --------------------------------------------------------
 
@@ -432,7 +443,30 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (76, 9, 'Asesoria', 'Asesoria Nueva Prueba: Aprobada', '2019-08-10 20:09:32', '2019-08-10 20:09:32'),
 (77, 9, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-10 20:09:42', '2019-08-10 20:09:42'),
 (78, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/08/19', '2019-08-11 08:48:16', '2019-08-11 08:48:16'),
-(79, 2, 'Inicio de sesión', 'Inicio de Sesión el 13/08/19', '2019-08-13 10:27:10', '2019-08-13 10:27:10');
+(79, 2, 'Inicio de sesión', 'Inicio de Sesión el 13/08/19', '2019-08-13 10:27:10', '2019-08-13 10:27:10'),
+(80, 9, 'Inicio de sesión', 'Inicio de Sesión el 13/08/19', '2019-08-14 03:41:39', '2019-08-14 03:41:39'),
+(81, 9, 'Deposito', 'Ingreso de deposito por 200000$, el14/08/19', '2019-08-14 04:37:19', '2019-08-14 04:37:19'),
+(82, 2, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 04:37:59', '2019-08-14 04:37:59'),
+(83, 9, 'Deposito', 'Deposito 2388398298289298 Aprobado', '2019-08-14 04:38:15', '2019-08-14 04:38:15'),
+(84, 9, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 04:39:01', '2019-08-14 04:39:01'),
+(85, 9, 'Solicitud de Asesoria', 'Prueba de contador de la hora', '2019-08-14 04:40:38', '2019-08-14 04:40:38'),
+(86, 9, 'Solicitud de Asesoria', 'Hola', '2019-08-14 04:47:27', '2019-08-14 04:47:27'),
+(87, 9, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 08:28:23', '2019-08-14 08:28:23'),
+(88, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 04:27:50', '2019-08-15 04:27:50'),
+(89, 9, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 06:57:49', '2019-08-15 06:57:49'),
+(90, 9, 'Actualización de Perfil', 'Modificacion de la informacion de perfil de usuario el 15/08/19', '2019-08-15 06:59:51', '2019-08-15 06:59:51'),
+(91, 10, 'Registro', 'Registro de usuario', '2019-08-15 07:17:44', '2019-08-15 07:17:44'),
+(92, 10, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 07:17:58', '2019-08-15 07:17:58'),
+(93, 10, 'Deposito', 'Ingreso de deposito por 1000000$, el15/08/19', '2019-08-15 07:20:00', '2019-08-15 07:20:00'),
+(94, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 07:20:17', '2019-08-15 07:20:17'),
+(95, 10, 'Deposito', 'Deposito 109920111 Aprobado', '2019-08-15 07:20:25', '2019-08-15 07:20:25'),
+(96, 10, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 07:20:38', '2019-08-15 07:20:38'),
+(97, 10, 'Solicitud de Asesoria', 'Nueva PRueba con nuevo Usuario', '2019-08-15 07:21:37', '2019-08-15 07:21:37'),
+(98, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 07:23:32', '2019-08-15 07:23:32'),
+(99, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:06:45', '2019-08-15 09:06:45'),
+(100, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:08:42', '2019-08-15 09:08:42'),
+(101, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:09:42', '2019-08-15 09:09:42'),
+(102, 9, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:20:04', '2019-08-15 09:20:04');
 
 -- --------------------------------------------------------
 
@@ -518,7 +552,10 @@ CREATE TABLE `payments` (
 INSERT INTO `payments` (`id`, `dating_id`, `dating_amount`, `payment_status`, `created_at`, `updated_at`) VALUES
 (1, 14, '40', 'P', '2019-08-10 08:08:13', '2019-08-10 08:08:13'),
 (2, 15, '20', 'A', '2019-08-10 19:55:37', '2019-08-10 19:56:55'),
-(3, 16, '20', 'A', '2019-08-10 20:01:03', '2019-08-10 20:01:31');
+(3, 16, '20', 'A', '2019-08-10 20:01:03', '2019-08-10 20:01:31'),
+(4, 17, '120000', 'P', '2019-08-14 04:40:37', '2019-08-14 04:40:37'),
+(5, 18, '40000', 'P', '2019-08-14 04:47:27', '2019-08-14 04:47:27'),
+(6, 19, '40000', 'P', '2019-08-15 07:21:37', '2019-08-15 07:21:37');
 
 -- --------------------------------------------------------
 
@@ -606,7 +643,9 @@ INSERT INTO `transactions_user` (`id`, `user_id`, `transaction_type`, `movement_
 (3, 9, 'Deposito', 7, '2019-08-09 05:41:00', '2019-08-09 05:41:00'),
 (4, 9, 'Deposito', 8, '2019-08-09 05:43:28', '2019-08-09 05:43:28'),
 (5, 9, 'Deposito', 9, '2019-08-09 05:44:46', '2019-08-09 05:44:46'),
-(6, 9, 'Deposito', 10, '2019-08-10 19:57:49', '2019-08-10 19:57:49');
+(6, 9, 'Deposito', 10, '2019-08-10 19:57:49', '2019-08-10 19:57:49'),
+(7, 9, 'Deposito', 11, '2019-08-14 04:37:20', '2019-08-14 04:37:20'),
+(8, 10, 'Deposito', 12, '2019-08-15 07:20:00', '2019-08-15 07:20:00');
 
 -- --------------------------------------------------------
 
@@ -622,6 +661,7 @@ CREATE TABLE `users` (
   `birthdate` date NOT NULL,
   `phone_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attach_document` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -633,11 +673,12 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `attach_document`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '123456', 'Josue', 'Martinez', '1010-10-10', '299930', NULL, 'jmartinezm@intelix.biz', '1234', NULL, '2019-07-15 01:32:35', '2019-07-15 01:32:35'),
-(2, '1000000', 'Administrador', 'Administrador', '2019-07-14', NULL, NULL, 'admin', 'admin', NULL, NULL, NULL),
-(6, '1234555', 'Nuevo', 'Usuario', '1000-10-10', '10290192', NULL, 'nuevo@mail.com', '1234', NULL, '2019-07-19 07:50:46', '2019-07-19 07:50:46'),
-(9, '24537817', 'Josue', 'Martinez', '1010-10-10', '0292019', NULL, 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14');
+INSERT INTO `users` (`id`, `identification_document`, `name`, `lastname`, `birthdate`, `phone_number`, `attach_document`, `state`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, '123456', 'Josue', 'Martinez', '1010-10-10', '299930', NULL, 'Carabobo', 'jmartinezm@intelix.biz', '1234', NULL, '2019-07-15 01:32:35', '2019-07-15 01:32:35'),
+(2, '1000000', 'Administrador', 'Administrador', '2019-07-14', NULL, NULL, 'Aragua', 'admin', 'admin', NULL, NULL, '2019-08-15 09:16:40'),
+(6, '1234555', 'Nuevo', 'Usuario', '1000-10-10', '10290192', NULL, 'Carabobo', 'nuevo@mail.com', '1234', NULL, '2019-07-19 07:50:46', '2019-07-19 07:50:46'),
+(9, '24537817', 'Josue', 'Martinez', '1010-10-10', '0292019', NULL, 'Apure', 'pruabuser@mail.com', '1234', NULL, '2019-07-19 08:10:14', '2019-07-19 08:10:14'),
+(10, '1788299', 'Andres', 'Lopez', '1995-10-10', '1034-1829038', NULL, 'Anzoátegui', 'alopez@mail.com', '1234', NULL, '2019-08-15 07:17:43', '2019-08-15 07:17:43');
 
 -- --------------------------------------------------------
 
@@ -660,7 +701,8 @@ INSERT INTO `user_role` (`user_id`, `role_id`, `created_at`, `updated_at`) VALUE
 (1, 2, '2019-07-15 01:32:36', '2019-07-15 01:32:36'),
 (2, 1, '2019-07-14 04:00:00', '2019-07-14 04:00:00'),
 (6, 2, '2019-07-19 07:50:50', '2019-07-19 07:50:50'),
-(9, 2, '2019-07-19 08:10:17', '2019-07-19 08:10:17');
+(9, 2, '2019-07-19 08:10:17', '2019-07-19 08:10:17'),
+(10, 2, '2019-08-15 07:17:43', '2019-08-15 07:17:43');
 
 --
 -- Índices para tablas volcadas
@@ -830,7 +872,7 @@ ALTER TABLE `balance_consultants`
 -- AUTO_INCREMENT de la tabla `balance_users`
 --
 ALTER TABLE `balance_users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `banks`
@@ -854,25 +896,25 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -890,7 +932,7 @@ ALTER TABLE `parameters`
 -- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `retirement`
@@ -914,13 +956,13 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT de la tabla `transactions_user`
 --
 ALTER TABLE `transactions_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

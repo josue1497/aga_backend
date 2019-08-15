@@ -182,4 +182,23 @@ class UserController extends Controller
 
         return json_encode($datings);
     }
+
+    public function change_password(Request $request){
+        $user = User::where('id',$request->user_id)->first();
+
+        $user->password=$request->new_password;
+
+        if($user->save()){
+            return json_encode('ok');
+        }else{
+            return json_encode('fail');
+        }
+    }
+
+    public function current_password(Request $request){
+        $user = User::where('id',$request->user_id)->first();
+
+        return json_encode($user->password);
+
+    }
 }

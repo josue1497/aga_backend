@@ -10,6 +10,8 @@ use App\Consultant;
 use Illuminate\Foundation\Auth\User;
 use App\BalanceUser;
 use App\Payment;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class DatingController extends Controller
 {
@@ -182,6 +184,27 @@ class DatingController extends Controller
         }
 
         return json_encode('fail');
+    }
+
+    public function report_for_states(Request $request){
+        $report=DB::select('select count(b.state) counter, b.state from datings a
+        inner join users b on (a.user_id=b.id)
+        group by b.state
+        order by count(b.state) desc', []);
+
+        return json_encode($report);
+
+    }
+
+    public function report_for_careers(Request $request){
+        $report=DB::select('select count(d.name) as counter, d.name career, month(a.for_date) mes, year(a.for_date) anio from datings a
+        inner join consultants b on (a.consultant_id=b.id)
+        inner join career_consultant c on (c.consultant_id=b.id)
+        inner join careers d on (c.career_id=d.id)
+        group by d.name, month(a.for_date), year(a.for_date)
+        order by a.for_date', []);
+
+        return json_encode($report);
     }
 
 }

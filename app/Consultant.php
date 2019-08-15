@@ -12,7 +12,7 @@ class Consultant extends Model
                                 'birthdate',
                                 'phone_number',
                                 'email', 'password',
-                                'price_per_hour','office_hours_from',
+                                'office_hours_from',
                                 'office_hours_to'
                                 ];
 

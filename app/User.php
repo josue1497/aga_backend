@@ -18,7 +18,7 @@ class User extends Model
                             'name',
                             'lastname',
                             'birthdate',
-                            'phone_number',
+                            'phone_number','state',
                             'email', 'password',
                             'attach_document'];
 
