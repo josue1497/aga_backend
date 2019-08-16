@@ -85,6 +85,9 @@ Route::post('account_consultant/update_use_acct', 'AccountConsultantController@u
 Route::resource('retirement', 'RetirementController');
 Route::post('retirement/submit_retirement', 'RetirementController@submit_retirement');
 Route::post('retirement/get_retirement_consultant', 'RetirementController@get_retirement_consultant');
+Route::post('retirement/get_request_retirements', 'RetirementController@get_request_retirements');
+Route::post('retirement/upload', 'RetirementController@upload');
+Route::post('retirement/reject_retirement', 'RetirementController@reject_retirement');
 
 Route::resource('parameter', 'ParameterController');
 Route::post('parameter/all', 'ParameterController@all');
@@ -92,6 +95,9 @@ Route::post('parameter/all', 'ParameterController@all');
 Route::resource('payment', 'PaymentController');
 Route::post('payment/get_payments_consultant', 'PaymentController@get_payments_consultant');
 Route::post('payment/get_payments_users', 'PaymentController@get_payments_users');
+
+Route::resource('bank', 'BankController');
+
 
 
 

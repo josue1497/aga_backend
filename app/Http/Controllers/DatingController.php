@@ -12,7 +12,6 @@ use Illuminate\Foundation\Auth\User;
 use App\BalanceUser;
 use App\Payment;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Response;
 
 class DatingController extends Controller
 {
