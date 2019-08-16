@@ -71,6 +71,8 @@ Route::post('dating/response_request', 'DatingController@response_request');
 Route::post('dating/cancelled_dating', 'DatingController@cancelled_dating');
 Route::post('dating/report_for_states', 'DatingController@report_for_states');
 Route::post('dating/report_for_careers', 'DatingController@report_for_careers');
+Route::post('dating/finished_dating', 'DatingController@finished_dating');
+
 
 
 Route::resource('balance_consultant', 'BalanceConsultantController');

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ana-garcia-asociados-9a033",
+  "private_key_id": "988bc45c4e0894c893f0aa5770bee3d5d92a642e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDnerqtfddJji9r\n91x58+s8l4VLpyEfvCEkbqreI8qB9gR3y2rvVhWr5Ylx7DVOLXhOyUtpOrvu851M\nscX/TcdodZfltKM4KYKSYJkrFVZmUJjVRgqTm7qL9ZiXL1HPwu8LTfWaR3WUkoBS\nSMxUlWC+efrspCjFcMZdR8LGGsR6sj/SasDmiPcTmaFkwrcx0Skd9kzfTTVDlrY3\nvHKMV4fLQhqm2ipQgjXtljiRPQq1k3ENfAmvACUxGMQDp+kX4+H3LZWleITJTdTw\n4VW6eH3YMXF5O0Rbcw8mZzJNi6P4v+iAGkvRKibuTJN5MrynH58hR0aIRiGekCyH\n8V0cBPWzAgMBAAECggEALYMacCEVcq9jkIlOo+W7AytReHnwT9KH+6dMrieAWgQa\nhck3ib41vZoAZ6dHJctX47m9O3/iUo2QiHNNmDBdPCMezfmxu8mhlBEtHGTyG2TO\nX+SJENOmHn2X1mXl4oETyfe2ifJx4lfZphQNJLZIErteBCgUohlVzyJcX+IEbpD8\ntLLGVMe72XaWRDTQ+Iro+eqPoMXesYoBobKfycUFJ5sVpMbv6bQFjJrVyOrGhKTf\n5GyLo0FC2scqMBBwPZLEnbPy9amZE0wHkdgau8dNUQ5q/MkNwYRnqFe7WMhKIP2D\n4Tl761WQWvJizv1NmcibU+TFBZD+Yj3sLn+DcIsCCQKBgQDznOBrEOf3Yg0taz5k\nDcB59krmnw7kaTlWoqtiBhYg7b0DuV//5ZPICcZEcrrwXjSomFyJb4wqz7sHTy91\nz8fNtR4zcD60xXuQqZ+PmGJ4B8Yv4ulgJQyFQjZNhJIeC2jdnk0rjtn4QwKDJe/u\n5TnWw9gqIKJq18SZGS2GOTSiOQKBgQDzP+lXEK7iKrXpWEW1oDffP0fz6wC6VxZv\nDgsf38Bil2IymHkwPGxfeUGi7S0w/dmw+nav9o/cD+PXj506grpbq+59dq/6fkgA\nwH5eHsmPwWyn7fQllZyBMct6Ml4z0ekMwTYw+yEIkDw2EM15xEcM/JGxEKuNd79C\nfCbUVPjnSwKBgQCFTjTnoYqtrjPzxJmReoz2sDVwWV1207WSmNUbgKUfQ7iIjynf\nB6uEbQTXc8iju4kpMKaCdk3HJ4D6kPQxjY+SGyf5kdReayogkRFFLGfFsstabNqz\nx9JAIWlBpeenFSs/Cl7EFRllZpW7Wkke+sRZpzVkaBM4T/W+qS5mImuQ0QKBgAah\nBUDkKX/sXgy/5RZwCVXCKbnR+7EYUnowTclOlbWaHoj2cscHvoRTj6BbClI9eMND\n8BwXghAjNrhXJ5fCnEWHR/aPV3hiHKA4nrj96cxLHyTsbSzhCOTUcJEh8kNDQzCf\ny1RGY74SADIQ/yiEWtNVxrqmk6ZFTycGryA2OJpFAoGAXagvI8pXKtdKVMzd2I0m\nv8IS1REfBvPBMOlxt3pmBNVN4kNEKvMLoruQheAAll/0WF5zU0X0MkJdvfM/VETj\ng3RE8zrAvI8iTYCwdNgni10h4/dAfnl7HZAQ8GOr7AzqGXwz0iFp+uav9ispSreV\ns3bi7a3WkGbelEd7RbmXe7A=\n-----END PRIVATE KEY-----\n",
+  "client_email": "ag-asociados@ana-garcia-asociados-9a033.iam.gserviceaccount.com",
+  "client_id": "115874737979846310354",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ag-asociados%40ana-garcia-asociados-9a033.iam.gserviceaccount.com"
+}

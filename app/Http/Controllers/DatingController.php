@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BalanceConsultant;
 use App\Dating;
 use Illuminate\Http\Request;
 use App\HistoryUser;
@@ -180,6 +181,30 @@ class DatingController extends Controller
 
 
             HistoryUser::add_to_history('Cancelacion de Asesoria.','Cancelo una solicitud de asesoria para el dia '.$dating->for_date, $dating->user_id);
+            return json_encode('ok');
+        }
+
+        return json_encode('fail');
+    }
+
+    public function finished_dating(Request $request){
+        $dating = Dating::where('id',$request->dating_id)->first();
+
+        $dating->dating_status='Finalizada';
+        if($dating->save()){
+
+            $balance = BalanceConsultant::where('consultant_id', $dating->consultant_id)->first();
+            $balance->amount = ($balance->amount+$dating->price);
+            $balance->save();
+
+            $payment=Payment::where('dating_id',$dating->id)->first();
+
+            if($payment){
+                $payment->payment_status='PG';
+                $payment->save();
+            }
+
+            HistoryUser::add_to_history('Cierre de Asesoria.','Cierre de una asesoria para el dia '.$dating->for_date, $dating->user_id);
             return json_encode('ok');
         }
 

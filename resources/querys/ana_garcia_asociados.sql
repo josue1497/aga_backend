@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2019 a las 07:27:56
+-- Tiempo de generación: 16-08-2019 a las 05:15:27
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -77,9 +77,9 @@ CREATE TABLE `balance_consultants` (
 --
 
 INSERT INTO `balance_consultants` (`id`, `consultant_id`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 17, '0', '2019-07-19 07:53:58', '2019-07-19 07:53:58'),
+(1, 17, '40000', '2019-07-19 07:53:58', '2019-08-16 07:03:47'),
 (2, 18, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
-(3, 15, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
+(3, 15, '1000', '2019-07-19 09:29:49', '2019-08-16 06:43:09'),
 (4, 19, '0', '2019-08-04 08:01:50', '2019-08-04 08:01:50');
 
 -- --------------------------------------------------------
@@ -103,7 +103,7 @@ CREATE TABLE `balance_users` (
 INSERT INTO `balance_users` (`id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 6, '0', '2019-07-19 07:50:52', '2019-07-19 07:50:52'),
 (3, 8, '0', '2019-07-19 08:09:02', '2019-07-19 08:09:02'),
-(4, 9, '41330', '2019-07-19 08:10:19', '2019-08-14 04:47:26'),
+(4, 9, '42470', '2019-07-19 08:10:19', '2019-08-16 06:58:23'),
 (5, 10, '960000', '2019-08-15 07:17:44', '2019-08-15 07:21:36');
 
 -- --------------------------------------------------------
@@ -116,6 +116,8 @@ CREATE TABLE `banks` (
   `id` int(10) UNSIGNED NOT NULL,
   `code` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
+  `identification_document` text,
+  `account_type` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -268,7 +270,20 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 (47, 17, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 08:20:41', '2019-08-14 08:20:41'),
 (48, 17, 'Inicio de sesión', 'Inicio de Sesión el 14/08/19', '2019-08-14 08:28:54', '2019-08-14 08:28:54'),
 (49, 17, 'Asesoria solicitada', 'Nueva PRueba con nuevo Usuario', '2019-08-15 07:21:37', '2019-08-15 07:21:37'),
-(50, 17, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:18:34', '2019-08-15 09:18:34');
+(50, 17, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:18:34', '2019-08-15 09:18:34'),
+(51, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 05:45:04', '2019-08-16 05:45:04'),
+(52, 17, 'Asesoria', 'Asesoria Prueba Validando Presupuesto: Aprobada', '2019-08-16 06:04:48', '2019-08-16 06:04:48'),
+(53, 17, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-16 06:06:20', '2019-08-16 06:06:20'),
+(54, 17, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-16 06:08:12', '2019-08-16 06:08:12'),
+(55, 17, 'Asesoria solicitada', 'Prueba', '2019-08-16 06:21:59', '2019-08-16 06:21:59'),
+(56, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:53:18', '2019-08-16 06:53:18'),
+(57, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:55:19', '2019-08-16 06:55:19'),
+(58, 17, 'Asesoria', 'Asesoria Prueba Formato: Aprobada', '2019-08-16 06:55:42', '2019-08-16 06:55:42'),
+(59, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:59:21', '2019-08-16 06:59:21'),
+(60, 17, 'Asesoria', 'Asesoria Prueba: Aprobada', '2019-08-16 06:59:48', '2019-08-16 06:59:48'),
+(61, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:02:01', '2019-08-16 07:02:01'),
+(62, 17, 'Asesoria', 'Asesoria Highcharts Demo: Aprobada', '2019-08-16 07:02:23', '2019-08-16 07:02:23'),
+(63, 17, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:04:04', '2019-08-16 07:04:04');
 
 -- --------------------------------------------------------
 
@@ -287,6 +302,7 @@ CREATE TABLE `datings` (
   `summary` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` decimal(10,0) NOT NULL,
   `dating_status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conference_room_url` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -295,26 +311,27 @@ CREATE TABLE `datings` (
 -- Volcado de datos para la tabla `datings`
 --
 
-INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `dating_status`, `created_at`, `updated_at`) VALUES
-(1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', 'Rechazada', '2019-07-25 02:03:27', '2019-08-01 08:59:49'),
-(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', 'Cancelada', '2019-07-25 02:22:34', '2019-08-07 07:39:26'),
-(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', 'Cancelada', '2019-07-25 02:26:38', '2019-08-07 07:37:18'),
-(4, 9, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '1000', 'Aprobada', '2019-07-27 15:56:58', '2019-08-01 08:54:23'),
-(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', 'Cancelada', '2019-07-27 18:30:05', '2019-08-07 07:38:56'),
-(6, 9, 15, '2019-08-10 04:00:00', '10:00', '11:10', 'Highcharts Demo', 'Test test', '1000', 'Cancelada', '2019-08-01 08:01:47', '2019-08-10 08:11:31'),
-(7, NULL, 15, '2019-08-08 04:00:00', '10:00', '12:00', 'Prueba Remota', 'Hola esta es una prueba remota', '1000', 'Solicitado', '2019-08-02 06:16:16', '2019-08-02 06:16:16'),
-(8, NULL, 17, '2019-08-13 04:00:00', '13:00', '15:00', 'Prueba de Consulta', 'Presupuesto Automatico', '20', 'Solicitado', '2019-08-07 07:56:39', '2019-08-07 07:56:39'),
-(9, 9, 17, '2019-10-10 04:00:00', '10:00', '15:00', 'Nueva Prueba', 'Otra pureba de consulta', '50', 'Aprobada', '2019-08-07 07:59:14', '2019-08-10 20:09:32'),
-(10, 9, 17, '2019-08-15 04:00:00', '10:00', '15:00', 'Prueba Validando Presupuesto', 'Hola', '50', 'Solicitado', '2019-08-10 07:36:40', '2019-08-10 07:36:40'),
-(11, 9, 17, '2019-09-20 04:00:00', '10:00', '11:00', 'Segunda Prueba hoy', 'Hola', '10', 'Cancelada', '2019-08-10 07:41:36', '2019-08-10 08:12:35'),
-(12, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Aprobada', '2019-08-10 08:06:44', '2019-08-10 20:09:42'),
-(13, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:07:29', '2019-08-10 08:07:29'),
-(14, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Solicitado', '2019-08-10 08:08:11', '2019-08-10 08:08:11'),
-(15, 9, 17, '2019-10-10 04:00:00', '10:00', '12:00', 'Group', 'hshshjs', '20', 'Cancelada', '2019-08-10 19:55:37', '2019-08-10 19:56:49'),
-(16, 9, 17, '2019-08-11 04:00:00', '10:00', '12:00', NULL, NULL, '20', 'Cancelada', '2019-08-10 20:01:03', '2019-08-10 20:01:31'),
-(17, 9, 17, '2019-10-10 04:00:00', '10:00', '13:0', 'Prueba', 'Prueba de contador de la hora', '120000', 'Solicitado', '2019-08-14 04:40:37', '2019-08-14 04:40:37'),
-(18, 9, 17, '2019-10-10 04:00:00', '10:10', '11:10', 'Prueba Formato', 'Hola', '40000', 'Solicitado', '2019-08-14 04:47:26', '2019-08-14 04:47:26'),
-(19, 10, 17, '2019-08-19 04:00:00', '10:00', '11:00', 'Highcharts Demo', 'Nueva PRueba con nuevo Usuario', '40000', 'Solicitado', '2019-08-15 07:21:36', '2019-08-15 07:21:36');
+INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`, `time_up`, `title`, `summary`, `price`, `dating_status`, `conference_room_url`, `created_at`, `updated_at`) VALUES
+(1, 9, 15, '2019-10-11 02:00:00', '22:00', '23:00', 'Prueba 1', 'Pruebsa 1', '0', 'Rechazada', NULL, '2019-07-25 02:03:27', '2019-08-01 08:59:49'),
+(2, 9, 17, '2019-10-11 02:10:00', '22:00', '23:00', 'Prueba 2', 'Prueba 2', '0', 'Cancelada', NULL, '2019-07-25 02:22:34', '2019-08-07 07:39:26'),
+(3, 9, 17, '2019-08-24 15:00:00', '22:00', '23:00', 'Solicitud de Asesoria', 'Necesito una asesoria.', '0', 'Cancelada', NULL, '2019-07-25 02:26:38', '2019-08-07 07:37:18'),
+(4, 9, 15, '1970-01-01 16:00:00', '22:00', '23:00', 'Hola', 'Que', '1000', 'Finalizada', NULL, '2019-07-27 15:56:58', '2019-08-16 06:43:08'),
+(5, 9, 17, '2019-07-29 14:00:00', '22:00', '23:00', 'Note', 'Cita de Prueba', '0', 'Cancelada', NULL, '2019-07-27 18:30:05', '2019-08-07 07:38:56'),
+(6, 9, 15, '2019-08-10 04:00:00', '10:00', '11:10', 'Highcharts Demo', 'Test test', '1000', 'Cancelada', NULL, '2019-08-01 08:01:47', '2019-08-10 08:11:31'),
+(7, NULL, 15, '2019-08-08 04:00:00', '10:00', '12:00', 'Prueba Remota', 'Hola esta es una prueba remota', '1000', 'Solicitado', NULL, '2019-08-02 06:16:16', '2019-08-02 06:16:16'),
+(8, NULL, 17, '2019-08-13 04:00:00', '13:00', '15:00', 'Prueba de Consulta', 'Presupuesto Automatico', '20', 'Solicitado', NULL, '2019-08-07 07:56:39', '2019-08-07 07:56:39'),
+(9, 9, 17, '2019-10-10 04:00:00', '10:00', '15:00', 'Nueva Prueba', 'Otra pureba de consulta', '50', 'Cancelada', NULL, '2019-08-07 07:59:14', '2019-08-16 06:53:02'),
+(10, 9, 17, '2019-08-15 04:00:00', '10:00', '15:00', 'Prueba Validando Presupuesto', 'Hola', '50', 'Cancelada', NULL, '2019-08-10 07:36:40', '2019-08-16 06:58:23'),
+(11, 9, 17, '2019-09-20 04:00:00', '10:00', '11:00', 'Segunda Prueba hoy', 'Hola', '10', 'Cancelada', NULL, '2019-08-10 07:41:36', '2019-08-10 08:12:35'),
+(12, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Cancelada', NULL, '2019-08-10 08:06:44', '2019-08-16 06:54:48'),
+(13, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Aprobada', NULL, '2019-08-10 08:07:29', '2019-08-16 06:06:20'),
+(14, 9, 17, '2019-10-10 04:00:00', '10:00', '14:00', 'Pureb', 'Prueba', '40', 'Aprobada', 'https://hangouts.google.com/call/vT8exSjXHFeizLNbVgShAEEE?no_rd', '2019-08-10 08:08:11', '2019-08-16 06:08:12'),
+(15, 9, 17, '2019-10-10 04:00:00', '10:00', '12:00', 'Group', 'hshshjs', '20', 'Cancelada', NULL, '2019-08-10 19:55:37', '2019-08-10 19:56:49'),
+(16, 9, 17, '2019-08-11 04:00:00', '10:00', '12:00', NULL, NULL, '20', 'Cancelada', NULL, '2019-08-10 20:01:03', '2019-08-10 20:01:31'),
+(17, 9, 17, '2019-10-10 04:00:00', '10:00', '13:0', 'Prueba', 'Prueba de contador de la hora', '120000', 'Aprobada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-14 04:40:37', '2019-08-16 06:59:47'),
+(18, 9, 17, '2019-10-10 04:00:00', '10:10', '11:10', 'Prueba Formato', 'Hola', '40000', 'Cancelada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-14 04:47:26', '2019-08-16 06:56:58'),
+(19, 10, 17, '2019-08-19 04:00:00', '10:00', '11:00', 'Highcharts Demo', 'Nueva PRueba con nuevo Usuario', '40000', 'Finalizada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-15 07:21:36', '2019-08-16 07:03:47'),
+(20, 9, 17, '2019-08-17 04:00:00', '12:00', '13:00', 'Note', 'Prueba', '40000', 'Solicitado', NULL, '2019-08-16 06:21:58', '2019-08-16 06:21:58');
 
 -- --------------------------------------------------------
 
@@ -466,7 +483,29 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (99, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:06:45', '2019-08-15 09:06:45'),
 (100, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:08:42', '2019-08-15 09:08:42'),
 (101, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:09:42', '2019-08-15 09:09:42'),
-(102, 9, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:20:04', '2019-08-15 09:20:04');
+(102, 9, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-15 09:20:04', '2019-08-15 09:20:04'),
+(103, 2, 'Inicio de sesión', 'Inicio de Sesión el 15/08/19', '2019-08-16 02:36:38', '2019-08-16 02:36:38'),
+(104, 9, 'Asesoria', 'Asesoria Prueba Validando Presupuesto: Aprobada', '2019-08-16 06:04:48', '2019-08-16 06:04:48'),
+(105, 9, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-16 06:06:20', '2019-08-16 06:06:20'),
+(106, 9, 'Asesoria', 'Asesoria Pureb: Aprobada', '2019-08-16 06:08:12', '2019-08-16 06:08:12'),
+(107, 9, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:11:19', '2019-08-16 06:11:19'),
+(108, 9, 'Solicitud de Asesoria', 'Prueba', '2019-08-16 06:21:59', '2019-08-16 06:21:59'),
+(109, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 1970-01-01 12:00:00', '2019-08-16 06:40:34', '2019-08-16 06:40:34'),
+(110, 9, 'Cierre de Asesoria.', 'Cierre de una asesoria para el dia 1970-01-01 12:00:00', '2019-08-16 06:43:09', '2019-08-16 06:43:09'),
+(111, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 2019-10-10 00:00:00', '2019-08-16 06:53:03', '2019-08-16 06:53:03'),
+(112, 9, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:54:27', '2019-08-16 06:54:27'),
+(113, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 2019-10-10 00:00:00', '2019-08-16 06:54:48', '2019-08-16 06:54:48'),
+(114, 9, 'Asesoria', 'Asesoria Prueba Formato: Aprobada', '2019-08-16 06:55:42', '2019-08-16 06:55:42'),
+(115, 9, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 06:56:30', '2019-08-16 06:56:30'),
+(116, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 2019-10-10 00:00:00', '2019-08-16 06:56:59', '2019-08-16 06:56:59'),
+(117, 9, 'Cancelacion de Asesoria.', 'Cancelo una solicitud de asesoria para el dia 2019-08-15 00:00:00', '2019-08-16 06:58:23', '2019-08-16 06:58:23'),
+(118, 9, 'Asesoria', 'Asesoria Prueba: Aprobada', '2019-08-16 06:59:47', '2019-08-16 06:59:47'),
+(119, 9, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:00:07', '2019-08-16 07:00:07'),
+(120, 10, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:00:42', '2019-08-16 07:00:42'),
+(121, 10, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:01:15', '2019-08-16 07:01:15'),
+(122, 10, 'Asesoria', 'Asesoria Highcharts Demo: Aprobada', '2019-08-16 07:02:23', '2019-08-16 07:02:23'),
+(123, 10, 'Inicio de sesión', 'Inicio de Sesión el 16/08/19', '2019-08-16 07:02:40', '2019-08-16 07:02:40'),
+(124, 10, 'Cierre de Asesoria.', 'Cierre de una asesoria para el dia 2019-08-19 00:00:00', '2019-08-16 07:03:48', '2019-08-16 07:03:48');
 
 -- --------------------------------------------------------
 
@@ -554,8 +593,9 @@ INSERT INTO `payments` (`id`, `dating_id`, `dating_amount`, `payment_status`, `c
 (2, 15, '20', 'A', '2019-08-10 19:55:37', '2019-08-10 19:56:55'),
 (3, 16, '20', 'A', '2019-08-10 20:01:03', '2019-08-10 20:01:31'),
 (4, 17, '120000', 'P', '2019-08-14 04:40:37', '2019-08-14 04:40:37'),
-(5, 18, '40000', 'P', '2019-08-14 04:47:27', '2019-08-14 04:47:27'),
-(6, 19, '40000', 'P', '2019-08-15 07:21:37', '2019-08-15 07:21:37');
+(5, 18, '40000', 'A', '2019-08-14 04:47:27', '2019-08-16 06:56:59'),
+(6, 19, '40000', 'PG', '2019-08-15 07:21:37', '2019-08-16 07:03:48'),
+(7, 20, '40000', 'P', '2019-08-16 06:21:59', '2019-08-16 06:21:59');
 
 -- --------------------------------------------------------
 
@@ -896,13 +936,13 @@ ALTER TABLE `consultants`
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
@@ -914,7 +954,7 @@ ALTER TABLE `deposits`
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -932,7 +972,7 @@ ALTER TABLE `parameters`
 -- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `retirement`
