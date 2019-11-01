@@ -98,6 +98,14 @@ Route::post('payment/get_payments_users', 'PaymentController@get_payments_users'
 
 Route::resource('bank', 'BankController');
 
+Route::resource('advisory_report', 'AdvisoryReportController');
+Route::post('advisory_report/get_all_reports', 'AdvisoryReportController@get_all_reports');
+
+Route::resource('bug_report', 'BugReportController');
+
+
+
+
 
 
 
