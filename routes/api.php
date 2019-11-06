@@ -102,6 +102,7 @@ Route::resource('advisory_report', 'AdvisoryReportController');
 Route::post('advisory_report/get_all_reports', 'AdvisoryReportController@get_all_reports');
 
 Route::resource('bug_report', 'BugReportController');
+Route::post('bug_report/get_all_reports', 'BugReportController@get_all_reports');
 
 
 

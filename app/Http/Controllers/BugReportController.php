@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BugReport;
+use App\Consultant;
 use Illuminate\Http\Request;
 
 class BugReportController extends Controller
@@ -89,5 +90,13 @@ class BugReportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function get_all_reports(Request $request){
+        $result = Consultant::join('bug_report','bug_report.consultant_id','=','consultants.id')
+        ->select('bug_report.*', 'consultants.name as consultant_name', 'consultants.lastname as consulant_lastname')
+        ->get();
+
+        return json_encode($result);
     }
 }
