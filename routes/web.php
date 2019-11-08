@@ -15,5 +15,5 @@ Route::get('/', function () {
     // date_default_timezone_set('America/Caracas');
     $timezone = date_default_timezone_get();
     $date = date('m/d/Y h:i:s a', time());
-    return "The current server timezone is: " . $timezone.", Fecha: ".$date;
+    return "Servidor Levantado, Zona Horaria: " . $timezone.", Fecha: ".$date;
 });
