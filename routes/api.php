@@ -44,6 +44,7 @@ Route::post('user/current_password/', 'UserController@current_password')->name('
 
 Route::resource('historyuser', 'HistoryUserController');
 Route::post('historyuser/all_histories', 'HistoryUserController@all_histories');
+Route::post('historyuser/global_history', 'HistoryUserController@global_history');
 
 
 Route::resource('consultanthistory', 'ConsultantHistoryController');

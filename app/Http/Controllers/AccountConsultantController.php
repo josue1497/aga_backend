@@ -112,9 +112,9 @@ class AccountConsultantController extends Controller
     {
         $acct = AccountConsultant::where('id', $request->id)->first();
 
-        $acct->to_use = $request->to_use;
+        $data = $request->all();
 
-        if ($acct->save()) {
+        if ($acct->update($data)) {
             return json_encode('ok');
         }
 

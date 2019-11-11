@@ -52,7 +52,7 @@ class DatingController extends Controller
             return json_encode('No tiene fondo suficientes para cubrir esta asesoria.');
         }
 
-        if (strtotime(date("d-m-Y H:i:00", time())) > strtotime($data['for_date'])) {
+        if (strtotime(date("d-m-Y H:i:00", time())) > strtotime($data['for_date'].' '.$data['time_from'])) {
             return json_encode('No puede apartar citas para días pasados.');
         }
 
