@@ -22,4 +22,9 @@ class Dating extends Model
         return $this->hasOne('App\Deposit');
     }
 
+    public function attached(){
+        return $this->hasMany('App\Attached');
+
+    }
+
 }

@@ -105,6 +105,9 @@ Route::post('advisory_report/get_all_reports', 'AdvisoryReportController@get_all
 Route::resource('bug_report', 'BugReportController');
 Route::post('bug_report/get_all_reports', 'BugReportController@get_all_reports');
 
+Route::resource('dating_attach', 'AttachedController');
+Route::post('dating_attach/get_all_attached', 'AttachedController@get_all_attached');
+
 
 
 
