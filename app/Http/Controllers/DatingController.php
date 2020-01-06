@@ -155,6 +155,17 @@ class DatingController extends Controller
         $data = $request->all();
 
         if ($dating->update($data)) {
+
+            $balance = BalanceUser::where('user_id', $dating->user_id)->first();
+            $balance->amount = ($balance->amount + $dating->price);
+            $balance->save();
+
+            $payment = Payment::where('dating_id', $dating->id)->first();
+            if ($payment) {
+                $payment->payment_status = 'A';
+                $payment->save();
+            }
+
             HistoryUser::add_to_history('Asesoria', "Asesoria " . $dating->title . ": " . $dating->dating_status, $dating->user_id);
             ConsultantHistory::add_to_history('Asesoria', "Asesoria " . $dating->title . ": " . $dating->dating_status, $dating->consultant_id);
             return json_encode('ok');
@@ -225,7 +236,8 @@ class DatingController extends Controller
 
     public function report_for_careers(Request $request)
     {
-        $report = DB::select('select count(d.name) as counter, d.name career, month(a.for_date) mes, year(a.for_date) anio from datings a
+        $report = DB::select('select count(d.name) as counter, d.name career, month(a.for_date) mes,
+         year(a.for_date) anio from datings a
         inner join consultants b on (a.consultant_id=b.id)
         inner join career_consultant c on (c.consultant_id=b.id)
         inner join careers d on (c.career_id=d.id)

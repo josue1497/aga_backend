@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2019 a las 07:21:48
+-- Tiempo de generación: 26-11-2019 a las 05:55:30
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -44,7 +44,8 @@ CREATE TABLE `account_consultants` (
 
 INSERT INTO `account_consultants` (`id`, `consultant_id`, `account_number`, `bank`, `to_use`, `created_at`, `updated_at`) VALUES
 (1, 17, '2132434535', 'Banco Industrial de Venezuela, C.A. Banco Universal', '0', '2019-08-10 18:54:30', '2019-10-22 07:32:00'),
-(2, 17, '02929292038933', 'Banco Provincial, S.A. Banco Universal', '1', '2019-08-10 20:03:52', '2019-10-22 07:32:11');
+(2, 17, '02929292038933000000', 'Banco Provincial, S.A. Banco Universal', '1', '2019-08-10 20:03:52', '2019-11-08 02:19:46'),
+(3, 17, '12345678901234567890', 'Banco de Venezuela S.A.C.A. Banco Universal', '1', '2019-11-08 01:58:43', '2019-11-08 02:17:05');
 
 -- --------------------------------------------------------
 
@@ -85,6 +86,29 @@ INSERT INTO `advisory_report` (`id`, `report_title`, `report_message`, `dating_i
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `attached`
+--
+
+CREATE TABLE `attached` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `url` varchar(256) NOT NULL,
+  `dating_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `attached`
+--
+
+INSERT INTO `attached` (`id`, `name`, `url`, `dating_id`, `created_at`, `updated_at`) VALUES
+(4, '52490d46db16cfc125112520192350.png', '52490d46db16cfc125112520192350.png', 21, '2019-11-26 03:50:33', '2019-11-26 03:50:33'),
+(5, 'skin original25112520192350.png', 'skin original25112520192350.png', 21, '2019-11-26 03:50:39', '2019-11-26 03:50:39');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `balance_consultants`
 --
 
@@ -104,7 +128,9 @@ INSERT INTO `balance_consultants` (`id`, `consultant_id`, `amount`, `created_at`
 (1, 17, '19800', '2019-07-19 07:53:58', '2019-10-31 05:52:18'),
 (2, 18, '0', '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
 (3, 15, '1000', '2019-07-19 09:29:49', '2019-08-16 06:43:09'),
-(4, 19, '0', '2019-08-04 08:01:50', '2019-08-04 08:01:50');
+(4, 19, '0', '2019-08-04 08:01:50', '2019-08-04 08:01:50'),
+(5, 20, '0', '2019-11-06 06:47:28', '2019-11-06 06:47:28'),
+(6, 21, '0', '2019-11-06 06:48:39', '2019-11-06 06:48:39');
 
 -- --------------------------------------------------------
 
@@ -127,7 +153,7 @@ CREATE TABLE `balance_users` (
 INSERT INTO `balance_users` (`id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 6, '0', '2019-07-19 07:50:52', '2019-07-19 07:50:52'),
 (3, 8, '0', '2019-07-19 08:09:02', '2019-07-19 08:09:02'),
-(4, 9, '142470', '2019-07-19 08:10:19', '2019-10-22 07:35:56'),
+(4, 9, '22470', '2019-07-19 08:10:19', '2019-11-08 01:36:20'),
 (5, 10, '960000', '2019-08-15 07:17:44', '2019-08-15 07:21:36'),
 (6, 11, '0', '2019-10-15 03:44:25', '2019-10-15 03:44:25'),
 (7, 12, '0', '2019-10-15 03:47:12', '2019-10-15 03:47:12'),
@@ -221,7 +247,9 @@ INSERT INTO `career_consultant` (`career_id`, `consultant_id`, `created_at`, `up
 (2, 15, '2019-06-30 07:40:35', '2019-06-30 07:40:35'),
 (1, 17, '2019-07-19 07:53:55', '2019-07-19 07:53:55'),
 (2, 18, '2019-07-19 09:29:49', '2019-07-19 09:29:49'),
-(1, 19, '2019-08-04 08:01:50', '2019-08-04 08:01:50');
+(1, 19, '2019-08-04 08:01:50', '2019-08-04 08:01:50'),
+(1, 20, '2019-11-06 06:47:28', '2019-11-06 06:47:28'),
+(2, 21, '2019-11-06 06:48:39', '2019-11-06 06:48:39');
 
 -- --------------------------------------------------------
 
@@ -255,7 +283,9 @@ INSERT INTO `consultants` (`id`, `identification_document`, `name`, `lastname`, 
 (15, '2918291', 'Armando', 'Mercado', '1991-06-09', '04124310425', 'amercado@a.net', '1234', NULL, NULL, 'Y', '10:00:00', '18:00:00', '2019-06-30 07:40:33', '2019-10-23 04:39:11'),
 (17, '100201001', 'Jesus', 'Mora', '1980-10-19', '1002-100234', 'consulnew@mail.com', '1234', NULL, NULL, 'Y', '10:00:00', '20:00:00', '2019-07-19 07:53:53', '2019-08-10 04:14:45'),
 (18, '2892982', 'Nuev', 'Pruob', '1029-10-10', '1029290', 'purbea@nueva.com', '1234', NULL, NULL, 'Y', '10:00:00', '18:00:00', '2019-07-19 09:29:49', '2019-10-23 04:39:15'),
-(19, '100000000', 'Jose', 'Perez', '1980-10-10', '1234-9892992', 'jperez@mail.com', '1234', NULL, NULL, 'Y', '08:00:00', '20:00:00', '2019-08-04 08:01:49', '2019-10-23 04:39:20');
+(19, '100000000', 'Jose', 'Perez', '1980-10-10', '1234-9892992', 'jperez@mail.com', '1234', NULL, NULL, 'Y', '08:00:00', '20:00:00', '2019-08-04 08:01:49', '2019-10-23 04:39:20'),
+(20, '1234556778', 'Maria', 'Duarte', '1990-10-10', '10291209321', 'mduarte@mail.com', '1234', NULL, NULL, 'Y', '09:10:00', '20:00:00', '2019-11-06 06:47:28', '2019-11-06 06:49:16'),
+(21, '928930029', 'Luis', 'Lopez', '1990-09-12', '102928392', 'llopez@mail.com', '1234', NULL, NULL, 'Y', '10:00:00', '17:00:00', '2019-11-06 06:48:39', '2019-11-06 06:49:21');
 
 -- --------------------------------------------------------
 
@@ -358,7 +388,19 @@ INSERT INTO `consultant_history` (`id`, `consultant_id`, `movement_type`, `descr
 (79, 17, 'Asesoria', 'Asesoria Note: Aprobada', '2019-10-31 05:55:14', '2019-10-31 05:55:14'),
 (80, 17, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 07:35:19', '2019-11-01 07:35:19'),
 (81, 17, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 09:18:02', '2019-11-01 09:18:02'),
-(82, 17, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 09:39:03', '2019-11-01 09:39:03');
+(82, 17, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 09:39:03', '2019-11-01 09:39:03'),
+(83, 20, 'Registro', 'Registro de Asesor', '2019-11-06 06:47:28', '2019-11-06 06:47:28'),
+(84, 21, 'Registro', 'Registro de Asesor', '2019-11-06 06:48:39', '2019-11-06 06:48:39'),
+(85, 20, 'Activacion', 'Se ha activado su usuario', '2019-11-06 06:49:16', '2019-11-06 06:49:16'),
+(86, 21, 'Activacion', 'Se ha activado su usuario', '2019-11-06 06:49:21', '2019-11-06 06:49:21'),
+(87, 17, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 07:22:21', '2019-11-06 07:22:21'),
+(88, 17, 'Asesoria solicitada', 'asdasd', '2019-11-08 01:18:17', '2019-11-08 01:18:17'),
+(89, 17, 'Asesoria solicitada', 'ASFD', '2019-11-08 01:36:21', '2019-11-08 01:36:21'),
+(90, 17, 'Inicio de sesión', 'Inicio de Sesión el 07/11/19', '2019-11-08 01:57:56', '2019-11-08 01:57:56'),
+(91, 17, 'Cuenta Bancaria', 'Adicion de nueva cuenta bancaria.', '2019-11-08 01:58:43', '2019-11-08 01:58:43'),
+(92, 17, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-11 15:18:09', '2019-11-11 15:18:09'),
+(93, 17, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-12 03:41:30', '2019-11-12 03:41:30'),
+(94, 17, 'Inicio de sesión', 'Inicio de Sesión el 26/11/19', '2019-11-26 04:45:43', '2019-11-26 04:45:43');
 
 -- --------------------------------------------------------
 
@@ -406,7 +448,9 @@ INSERT INTO `datings` (`id`, `user_id`, `consultant_id`, `for_date`, `time_from`
 (17, 9, 17, '2019-10-10 04:00:00', '10:00', '13:0', 'Prueba', 'Prueba de contador de la hora', '120000', 'Aprobada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-14 04:40:37', '2019-08-16 06:59:47'),
 (18, 9, 17, '2019-10-10 04:00:00', '10:10', '11:10', 'Prueba Formato', 'Hola', '40000', 'Cancelada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-14 04:47:26', '2019-08-16 06:56:58'),
 (19, 10, 17, '2019-08-19 04:00:00', '10:00', '11:00', 'Highcharts Demo', 'Nueva PRueba con nuevo Usuario', '40000', 'Finalizada', 'https://hangouts.google.com/call/hK6A1iIjUMTVic2ewst5AEEE?no_rd', '2019-08-15 07:21:36', '2019-08-16 07:03:47'),
-(20, 9, 17, '2019-08-17 04:00:00', '12:00', '13:00', 'Note', 'Prueba', '40000', 'Aprobada', 'asdfghjk', '2019-08-16 06:21:58', '2019-10-31 05:55:14');
+(20, 9, 17, '2019-08-17 04:00:00', '12:00', '13:00', 'Note', 'Prueba', '40000', 'Aprobada', 'asdfghjk', '2019-08-16 06:21:58', '2019-10-31 05:55:14'),
+(21, 9, 17, '2019-11-08 04:00:00', '14:00', '1:00', 'asd', 'asdasd', '80000', 'Solicitado', NULL, '2019-11-08 01:18:16', '2019-11-08 01:18:16'),
+(22, 9, 17, '2019-11-07 04:00:00', '22:30', '23:30', 'Note Status test', 'ASFD', '40000', 'Solicitado', NULL, '2019-11-08 01:36:20', '2019-11-08 01:36:20');
 
 -- --------------------------------------------------------
 
@@ -622,7 +666,33 @@ INSERT INTO `history_user` (`id`, `user_id`, `movement_type`, `description`, `cr
 (149, 9, 'Asesoria', 'Asesoria Note: Aprobada', '2019-10-31 05:55:14', '2019-10-31 05:55:14'),
 (150, 2, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 08:00:13', '2019-11-01 08:00:13'),
 (151, 2, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 09:57:56', '2019-11-01 09:57:56'),
-(152, 2, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 10:14:26', '2019-11-01 10:14:26');
+(152, 2, 'Inicio de sesión', 'Inicio de Sesión el 01/11/19', '2019-11-01 10:14:26', '2019-11-01 10:14:26'),
+(153, 2, 'Inicio de sesión', 'Inicio de Sesión el 04/11/19', '2019-11-05 02:32:34', '2019-11-05 02:32:34'),
+(154, 2, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 05:30:20', '2019-11-06 05:30:20'),
+(155, 2, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 06:35:00', '2019-11-06 06:35:00'),
+(156, 2, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 06:35:02', '2019-11-06 06:35:02'),
+(157, 2, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 06:48:58', '2019-11-06 06:48:58'),
+(158, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 06:50:46', '2019-11-06 06:50:46'),
+(159, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 06:59:12', '2019-11-06 06:59:12'),
+(160, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 07:03:51', '2019-11-06 07:03:51'),
+(161, 9, 'Inicio de sesión', 'Inicio de Sesión el 06/11/19', '2019-11-06 07:30:40', '2019-11-06 07:30:40'),
+(162, 9, 'Inicio de sesión', 'Inicio de Sesión el 07/11/19', '2019-11-08 00:59:10', '2019-11-08 00:59:10'),
+(163, 9, 'Solicitud de Asesoria', 'asdasd', '2019-11-08 01:18:17', '2019-11-08 01:18:17'),
+(164, 2, 'Inicio de sesión', 'Inicio de Sesión el 07/11/19', '2019-11-08 01:20:18', '2019-11-08 01:20:18'),
+(165, 9, 'Inicio de sesión', 'Inicio de Sesión el 07/11/19', '2019-11-08 01:25:19', '2019-11-08 01:25:19'),
+(166, 9, 'Solicitud de Asesoria', 'ASFD', '2019-11-08 01:36:21', '2019-11-08 01:36:21'),
+(167, 2, 'Inicio de sesión', 'Inicio de Sesión el 07/11/19', '2019-11-08 02:24:04', '2019-11-08 02:24:04'),
+(168, 9, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-11 13:07:57', '2019-11-11 13:07:57'),
+(169, 9, 'Enlace Caido', 'El usuario no ha podido entrar a la sala de conferencia.', '2019-11-11 14:36:21', '2019-11-11 14:36:21'),
+(170, 9, 'Entrada a sala de conferencia', 'El usuario ha entrado al link de sala de conferencia, pare recibir su asesoria.', '2019-11-11 14:37:37', '2019-11-11 14:37:37'),
+(171, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-11 14:39:25', '2019-11-11 14:39:25'),
+(172, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-11 14:47:20', '2019-11-11 14:47:20'),
+(173, 11, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-11 15:19:17', '2019-11-11 15:19:17'),
+(174, 2, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-12 01:02:23', '2019-11-12 01:02:23'),
+(175, 9, 'Inicio de sesión', 'Inicio de Sesión el 11/11/19', '2019-11-12 03:11:36', '2019-11-12 03:11:36'),
+(176, 12, 'Inicio de sesión', 'Inicio de Sesión el 14/11/19', '2019-11-14 23:00:01', '2019-11-14 23:00:01'),
+(177, 9, 'Inicio de sesión', 'Inicio de Sesión el 14/11/19', '2019-11-14 23:19:06', '2019-11-14 23:19:06'),
+(178, 9, 'Inicio de sesión', 'Inicio de Sesión el 25/11/19', '2019-11-26 01:23:47', '2019-11-26 01:23:47');
 
 -- --------------------------------------------------------
 
@@ -712,7 +782,9 @@ INSERT INTO `payments` (`id`, `dating_id`, `dating_amount`, `payment_status`, `c
 (4, 17, '120000', 'P', '2019-08-14 04:40:37', '2019-08-14 04:40:37'),
 (5, 18, '40000', 'A', '2019-08-14 04:47:27', '2019-08-16 06:56:59'),
 (6, 19, '40000', 'PG', '2019-08-15 07:21:37', '2019-08-16 07:03:48'),
-(7, 20, '40000', 'P', '2019-08-16 06:21:59', '2019-08-16 06:21:59');
+(7, 20, '40000', 'P', '2019-08-16 06:21:59', '2019-08-16 06:21:59'),
+(8, 21, '80000', 'P', '2019-11-08 01:18:17', '2019-11-08 01:18:17'),
+(9, 22, '40000', 'P', '2019-11-08 01:36:21', '2019-11-08 01:36:21');
 
 -- --------------------------------------------------------
 
@@ -893,6 +965,12 @@ ALTER TABLE `advisory_report`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `attached`
+--
+ALTER TABLE `attached`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `balance_consultants`
 --
 ALTER TABLE `balance_consultants`
@@ -1038,7 +1116,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT de la tabla `account_consultants`
 --
 ALTER TABLE `account_consultants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `activity_logs`
@@ -1053,10 +1131,16 @@ ALTER TABLE `advisory_report`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `attached`
+--
+ALTER TABLE `attached`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `balance_consultants`
 --
 ALTER TABLE `balance_consultants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `balance_users`
@@ -1086,19 +1170,19 @@ ALTER TABLE `careers`
 -- AUTO_INCREMENT de la tabla `consultants`
 --
 ALTER TABLE `consultants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `consultant_history`
 --
 ALTER TABLE `consultant_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `datings`
 --
 ALTER TABLE `datings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `deposits`
@@ -1116,7 +1200,7 @@ ALTER TABLE `error_reports`
 -- AUTO_INCREMENT de la tabla `history_user`
 --
 ALTER TABLE `history_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -1134,7 +1218,7 @@ ALTER TABLE `parameters`
 -- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `retirement`
